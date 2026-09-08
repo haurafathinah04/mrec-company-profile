@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\Logout;
+use App\Http\Controllers\Auth\PasswordController;
+
 
 // Home
 Route::get('/', function () {
@@ -31,3 +35,23 @@ Route::get('/blog', function () {
 Route::get('/our-members', function () {
     return view('pages.team');
 })->name('our-members');
+
+Route::get('/login', function () {
+    return view('pages.auth.login');
+})->name('login');
+
+Route::post('/login', Login::class)
+    ->middleware('guest');
+
+Route::post('/logout', Logout::class)
+    ->middleware('auth')
+    ->name('logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/password_edit', function () {
+        return view('pages.auth.password_edit');
+    })->name('password.edit');
+
+    Route::put('/password_edit', [PasswordController::class, 'update'])
+        ->name('password.update');
+});
