@@ -6,10 +6,21 @@
 <!-- Hero Section -->
 <section class="pt-32 pb-12 bg-white text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-5xl font-bold text-[#D21502] mb-4">Our Projects</h1>
-        <p class="text-gray-500 max-w-2xl mx-auto text-sm md:text-base">
-            Take a closer look at the ideas and solutions we've brought to life through our projects.
-        </p>
+        <div class="flex flex-col items-center justify-between gap-6 text-left sm:flex-row sm:items-end">
+            <div>
+                <p class="font-poppins text-xs font-semibold uppercase tracking-[0.28em] text-[#D21502]">MREC portfolio</p>
+                <h1 class="mt-3 text-4xl font-bold text-[#2D3748] md:text-5xl">Our Projects</h1>
+                <p class="mt-4 max-w-2xl text-sm text-gray-500 md:text-base">
+                    Take a closer look at the ideas and solutions we've brought to life through our projects.
+                </p>
+            </div>
+            @auth
+                <a href="{{ route('projects.create') }}" class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#D21502] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#D21502]/20 transition hover:bg-[#b71102]">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    Add project
+                </a>
+            @endauth
+        </div>
 
         <!-- Category Filters -->
         <div class="flex flex-wrap justify-center gap-2 mt-8">
@@ -27,19 +38,25 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            @for ($i = 0; $i < 9; $i++)
+            @forelse ($projects as $project)
             <article class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-lg transition">
                 <div class="aspect-video w-full bg-gray-200 relative overflow-hidden">
-                    <img src="{{ asset('storage/images/project-placeholder.jpg') }}" alt="Project Thumbnail" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/' . $project->url_image_project) }}" alt="{{ $project->project_name }}" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
-                    <span class="text-xs font-bold text-[#D21502] tracking-wider uppercase">AR/VR</span>
+                    <span class="text-xs font-bold text-[#D21502] tracking-wider uppercase">{{ $project->category_project }}</span>
                     <h2 class="text-lg font-bold text-gray-900 mt-1 mb-2">
-                        AR Based Indoor Navigation (Geo Navigasi)
+                        {{ $project->project_name }}
                     </h2>
                 </div>
             </article>
-            @endfor
+            @empty
+                <div class="col-span-full rounded-2xl border border-dashed border-gray-200 px-6 py-16 text-center">
+                    <i class="fa-solid fa-cube text-2xl text-gray-300"></i>
+                    <h2 class="mt-4 text-lg font-bold text-[#2D3748]">No projects yet</h2>
+                    <p class="mt-2 text-sm text-gray-500">Project yang ditambahkan akan muncul di sini.</p>
+                </div>
+            @endforelse
 
         </div>
 

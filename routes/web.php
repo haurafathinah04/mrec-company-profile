@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\ProjectController;
 
 
 // Home
@@ -22,9 +23,7 @@ Route::get('/services', function () {
 })->name('services');
 
 // Projects
-Route::get('/projects', function () {
-    return view('pages.projects');
-})->name('projects');
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 // Blog
 Route::get('/blog', function () {
@@ -54,4 +53,9 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/password_edit', [PasswordController::class, 'update'])
         ->name('password.update');
+
+    Route::get('/projects/create', [ProjectController::class, 'create'])
+        ->name('projects.create');
+    Route::post('/projects', [ProjectController::class, 'store'])
+        ->name('projects.store');
 });
