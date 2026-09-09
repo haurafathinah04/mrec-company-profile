@@ -39,7 +39,10 @@
         @yield('content')
     </main>
 
-    @include('components.footer')
+    {{-- Tampilkan footer KECUALI jika di halaman /login --}}
+    @unless (Request::is('login'))
+        @include('components.footer')
+    @endunless
 
 </body>
 </html>

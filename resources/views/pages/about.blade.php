@@ -81,10 +81,13 @@
                     Our Mission
                 </h2>
             </div>
-            <p class="font-hanken font-normal text-[16px] text-gray-500 max-w-md lg:text-right">
+            <!-- max-w-md diubah ke max-w-2xl agar teks memanjang ke samping -->
+            <p class="font-hanken font-normal text-[16px] text-gray-500 max-w-2xl lg:text-right">
                 We are committed to pushing the boundaries of spatial computing through six core pillars of excellence.
             </p>
         </div>
+
+    </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
