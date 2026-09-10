@@ -70,95 +70,100 @@
 
 
 <!-- ========================================= -->
-<!-- 3. OUR MISSION SECTION -->
+<!-- 3. OUR MISSION SECTION (COMPACT 1 PAGE Layout) -->
 <!-- ========================================= -->
-<section class="py-24 bg-[#FBFBFC]">
-    <div class="w-full px-8 sm:px-12 lg:px-16 max-w-[1440px] mx-auto">
-        
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+<section class="py-12 bg-[#FBFBFC]">
+    <div class="w-full px-6 sm:px-12 lg:px-16 max-w-[1440px] mx-auto">
+
+        <!-- Header Mission (Sejajar sempurna dengan batas kiri kartu) -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-12">
             <div>
-                <h2 class="font-poppins font-semibold text-[44px] text-gray-900 leading-tight">
+                <h2 class="font-poppins font-semibold text-[44px] sm:text-[52px] text-gray-900 leading-none">
                     Our Mission
                 </h2>
             </div>
-            <!-- max-w-md diubah ke max-w-2xl agar teks memanjang ke samping -->
-            <p class="font-hanken font-normal text-[16px] text-gray-500 max-w-2xl lg:text-right">
+            <p class="font-hanken font-normal text-[15px] sm:text-[16px] text-gray-500 max-w-2xl lg:text-right leading-relaxed">
                 We are committed to pushing the boundaries of spatial computing through six core pillars of excellence.
             </p>
         </div>
 
-    </div>
+        <!-- Grid Kartu Kompak -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-
-            <div class="bg-white p-8 rounded-3xl border border-gray-200/70 shadow-sm hover:shadow-md transition duration-300">
-                <div class="w-12 h-12 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-6 text-lg">
+            <!-- Card 1 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-300/80 shadow-sm">
+                <div class="w-9 h-9 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-3 text-sm">
                     <i class="fa-solid fa-microscope"></i>
                 </div>
-                <h3 class="font-poppins font-semibold text-[20px] text-gray-900 mb-3">
+                <h3 class="font-poppins font-semibold text-[17px] text-gray-900 mb-1.5">
                     Innovative Research
                 </h3>
-                <p class="font-hanken font-normal text-[15px] text-gray-500 leading-relaxed">
+                <p class="font-hanken font-normal text-[13.5px] text-gray-500 leading-snug">
                     Conduct cutting-edge research to advance the development and understanding of metaverse technologies, including Virtual Reality (VR), Augmented Reality (AR), Mixed Reality (MR), and 3D Website.
                 </p>
             </div>
 
-            <div class="bg-white p-8 rounded-3xl border border-gray-200/70 shadow-sm hover:shadow-md transition duration-300">
-                <div class="w-12 h-12 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-6 text-lg">
+            <!-- Card 2 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-300/80 shadow-sm">
+                <div class="w-9 h-9 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-3 text-sm">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h3 class="font-poppins font-semibold text-[20px] text-gray-900 mb-3">
+                <h3 class="font-poppins font-semibold text-[17px] text-gray-900 mb-1.5">
                     Educational Excellence
                 </h3>
-                <p class="font-hanken font-normal text-[15px] text-gray-500 leading-relaxed">
+                <p class="font-hanken font-normal text-[13.5px] text-gray-500 leading-snug">
                     Provide top-tier educational programs and workshops that equip students, researchers, and professionals with the skills and knowledge necessary to excel in the metaverse industry.
                 </p>
             </div>
 
-            <div class="bg-white p-8 rounded-3xl border border-gray-200/70 shadow-sm hover:shadow-md transition duration-300">
-                <div class="w-12 h-12 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-6 text-lg">
+            <!-- Card 3 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-300/80 shadow-sm">
+                <div class="w-9 h-9 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-3 text-sm">
                     <i class="fa-solid fa-diagram-project"></i>
                 </div>
-                <h3 class="font-poppins font-semibold text-[20px] text-gray-900 mb-3">
+                <h3 class="font-poppins font-semibold text-[17px] text-gray-900 mb-1.5">
                     Collaborative Environment
                 </h3>
-                <p class="font-hanken font-normal text-[15px] text-gray-500 leading-relaxed">
+                <p class="font-hanken font-normal text-[13.5px] text-gray-500 leading-snug">
                     Foster a collaborative environment that brings together academia, industry partners, and government bodies to explore, develop, and implement metaverse solutions.
                 </p>
             </div>
 
-            <div class="bg-white p-8 rounded-3xl border border-gray-200/70 shadow-sm hover:shadow-md transition duration-300">
-                <div class="w-12 h-12 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-6 text-lg">
+            <!-- Card 4 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-300/80 shadow-sm">
+                <div class="w-9 h-9 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-3 text-sm">
                     <i class="fa-solid fa-users"></i>
                 </div>
-                <h3 class="font-poppins font-semibold text-[20px] text-gray-900 mb-3">
+                <h3 class="font-poppins font-semibold text-[17px] text-gray-900 mb-1.5">
                     Community Engagement
                 </h3>
-                <p class="font-hanken font-normal text-[15px] text-gray-500 leading-relaxed">
+                <p class="font-hanken font-normal text-[13.5px] text-gray-500 leading-snug">
                     Engage with the wider community through outreach programs, public lectures, and immersive experiences that showcase the potential of the metaverse to transform various sectors.
                 </p>
             </div>
 
-            <div class="bg-white p-8 rounded-3xl border border-gray-200/70 shadow-sm hover:shadow-md transition duration-300">
-                <div class="w-12 h-12 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-6 text-lg">
+            <!-- Card 5 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-300/80 shadow-sm">
+                <div class="w-9 h-9 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-3 text-sm">
                     <i class="fa-solid fa-leaf"></i>
                 </div>
-                <h3 class="font-poppins font-semibold text-[20px] text-gray-900 mb-3">
+                <h3 class="font-poppins font-semibold text-[17px] text-gray-900 mb-1.5">
                     Sustainable Development
                 </h3>
-                <p class="font-hanken font-normal text-[15px] text-gray-500 leading-relaxed">
+                <p class="font-hanken font-normal text-[13.5px] text-gray-500 leading-snug">
                     Promote sustainable and ethical development within the metaverse, ensuring that advancements contribute positively to society and adhere to principles of inclusivity and digital well-being.
                 </p>
             </div>
 
-            <div class="bg-white p-8 rounded-3xl border border-gray-200/70 shadow-sm hover:shadow-md transition duration-300">
-                <div class="w-12 h-12 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-6 text-lg">
+            <!-- Card 6 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-300/80 shadow-sm">
+                <div class="w-9 h-9 rounded-full bg-red-50 text-[#D21502] flex items-center justify-center mb-3 text-sm">
                     <i class="fa-solid fa-rocket"></i>
                 </div>
-                <h3 class="font-poppins font-semibold text-[20px] text-gray-900 mb-3">
+                <h3 class="font-poppins font-semibold text-[17px] text-gray-900 mb-1.5">
                     Innovative Applications
                 </h3>
-                <p class="font-hanken font-normal text-[15px] text-gray-500 leading-relaxed">
+                <p class="font-hanken font-normal text-[13.5px] text-gray-500 leading-snug">
                     Explore and develop innovative applications of metaverse technologies across different industries, driving forward new business models and opportunities for economic growth.
                 </p>
             </div>
