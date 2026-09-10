@@ -24,11 +24,16 @@
 
         <!-- Category Filters -->
         <div class="flex flex-wrap justify-center gap-2 mt-8">
-            <button class="px-5 py-2 rounded-full text-xs font-semibold bg-[#2D3748] text-white">ALL</button>
-            <button class="px-5 py-2 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200">AR/VR</button>
-            <button class="px-5 py-2 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200">GAME</button>
-            <button class="px-5 py-2 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200">3D DESIGN</button>
-            <button class="px-5 py-2 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200">WEB/MOBILE</button>
+            <a href="{{ route('projects.index') }}"
+                class="rounded-full px-5 py-2 text-xs font-semibold {{ $selectedCategory === null ? 'bg-[#2D3748] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
+                ALL
+            </a>
+            @foreach ($categories as $category)
+                <a href="{{ route('projects.index', ['category' => $category]) }}"
+                    class="rounded-full px-5 py-2 text-xs font-semibold uppercase {{ $selectedCategory === $category ? 'bg-[#2D3748] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
+                    {{ $category }}
+                </a>
+            @endforeach
         </div>
     </div>
 </section>
@@ -60,12 +65,30 @@
 
         </div>
 
-        <!-- Pagination -->
-        <div class="flex justify-center items-center gap-2 mt-12">
-            <button class="w-8 h-8 rounded-md bg-[#2D3748] text-white text-xs font-bold">1</button>
-            <button class="w-8 h-8 rounded-md bg-gray-100 text-gray-600 text-xs font-bold hover:bg-gray-200">2</button>
-            <button class="px-3 h-8 rounded-md bg-gray-100 text-gray-600 text-xs font-bold hover:bg-gray-200">Next</button>
-        </div>
+        @if ($projects->hasPages())
+            <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Projects pagination">
+                @if ($projects->onFirstPage())
+                    <span class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-400">Previous</span>
+                @else
+                    <a href="{{ $projects->previousPageUrl() }}" class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600 transition hover:bg-gray-200">Previous</a>
+                @endif
+
+                @for ($page = 1; $page <= $projects->lastPage(); $page++)
+                    @if ($page === $projects->currentPage())
+                        <span class="h-8 min-w-8 rounded-md bg-[#2D3748] px-2 py-2 text-center text-xs font-bold text-white" aria-current="page">{{ $page }}</span>
+                    @else
+                        <a href="{{ $projects->url($page) }}" class="h-8 min-w-8 rounded-md bg-gray-100 px-2 py-2 text-center text-xs font-bold text-gray-600 transition hover:bg-gray-200">{{ $page }}</a>
+                    @endif
+                @endfor
+
+                @if ($projects->hasMorePages())
+                    <a href="{{ $projects->nextPageUrl() }}" class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600 transition hover:bg-gray-200">Next</a>
+                @else
+                    <span class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-400">Next</span>
+                @endif
+            </nav>
+        @endif
+
     </div>
 </section>
 @endsection

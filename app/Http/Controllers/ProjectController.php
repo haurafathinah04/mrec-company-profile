@@ -10,10 +10,24 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $categories = ['ar/vr', 'game', '3d design', 'web/mobile'];
+        $selectedCategory = $request->query('category');
+
+        if (! in_array($selectedCategory, $categories, true)) {
+            $selectedCategory = null;
+        }
+
+        $projects = Project::query()
+            ->when($selectedCategory, fn ($query) => $query->where('category_project', $selectedCategory))
+            ->paginate(9)
+            ->withQueryString();
+
         return view('pages.projects', [
-            'projects' => Project::all()
+            'projects' => $projects,
+            'categories' => $categories,
+            'selectedCategory' => $selectedCategory,
         ]);
     }
 
