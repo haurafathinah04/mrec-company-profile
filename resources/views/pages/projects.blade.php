@@ -53,6 +53,22 @@
                     <h2 class="text-lg font-bold text-gray-900 mt-1 mb-2">
                         {{ $project->project_name }}
                     </h2>
+                    @auth
+                        <div class="mt-4 flex items-center gap-2">
+                            <a href="{{ route('projects.edit', $project) }}" class="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-700 transition hover:bg-gray-200">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Edit project
+                            </a>
+                            <form action="{{ route('projects.destroy', $project) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus project ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="inline-flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700 transition hover:bg-red-100">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    Hapus project
+                                </button>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
             </article>
             @empty

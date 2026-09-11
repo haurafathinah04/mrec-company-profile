@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -36,7 +37,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.project_form');
+        return view('pages.admin.project_form', ['project' => null]);
     }
 
     /**
@@ -68,24 +69,46 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        return view('pages.admin.project_form', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $validated = $request->validate([
+            'project_name' => ['required', 'string', 'max:255'],
+            'url_image_project' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:5120'],
+            'category_project' => ['required', 'in:ar/vr,game,web/mobile,3d design'],
+        ]);
+
+        if ($request->hasFile('url_image_project')) {
+            $newImagePath = $request->file('url_image_project')->store('projects', 'public');
+            Storage::disk('public')->delete($project->url_image_project);
+            $validated['url_image_project'] = $newImagePath;
+        } else {
+            unset($validated['url_image_project']);
+        }
+
+        $project->update($validated);
+
+        return redirect()
+            ->route('projects.index')
+            ->with('success', 'Project berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()
+            ->route('projects.index')
+            ->with('success', 'Project berhasil dihapus.');
     }
 }

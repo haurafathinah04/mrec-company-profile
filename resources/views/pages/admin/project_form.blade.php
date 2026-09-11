@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'MREC - Add Project')
+@php($isEdit = isset($project) && $project)
+
+@section('title', $isEdit ? 'MREC - Edit Project' : 'MREC - Add Project')
 
 @section('content')
 <section class="relative min-h-screen overflow-hidden bg-[#f5f6f8] px-5 pb-20 pt-32 sm:px-8 lg:px-12">
@@ -11,7 +13,7 @@
         <div class="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
                 <p class="font-poppins text-xs font-semibold uppercase tracking-[0.28em] text-[#D21502]">Project management</p>
-                <h1 class="mt-3 font-sora text-3xl font-bold leading-tight text-[#1f2937] sm:text-4xl">Add a new project</h1>
+                <h1 class="mt-3 font-sora text-3xl font-bold leading-tight text-[#1f2937] sm:text-4xl">{{ $isEdit ? 'Edit project' : 'Add a new project' }}</h1>
             </div>
             <a href="{{ route('projects.index') }}" class="inline-flex items-center gap-2 self-start text-sm font-semibold text-[#2D3748] transition hover:text-[#D21502] sm:self-auto">
                 <i class="fa-solid fa-arrow-left text-xs"></i>
@@ -35,12 +37,15 @@
 
                 <div class="relative flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-white/50">
                     <span class="h-px w-10 bg-[#D21502]"></span>
-                    <span>New entry</span>
+                    <span>{{ $isEdit ? 'Edit entry' : 'New entry' }}</span>
                 </div>
             </div>
 
-            <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data" class="p-7 sm:p-10 lg:p-14">
+            <form action="{{ $isEdit ? route('projects.update', $project) : route('projects.store') }}" method="POST" enctype="multipart/form-data" class="p-7 sm:p-10 lg:p-14">
                 @csrf
+                @if ($isEdit)
+                    @method('PUT')
+                @endif
 
                 <div class="mb-8 border-b border-gray-100 pb-6">
                     <p class="font-poppins text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Project details</p>
@@ -56,19 +61,22 @@
                 <div class="space-y-6">
                     <div>
                         <label for="project_name" class="mb-2 block text-sm font-semibold text-gray-700">Project name <span class="text-[#D21502]">*</span></label>
-                        <input type="text" id="project_name" name="project_name" value="{{ old('project_name') }}" placeholder="e.g. Virtual Campus Tour" class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('project_name') border-red-500 @else border-gray-200 @enderror" required>
+                        <input type="text" id="project_name" name="project_name" value="{{ old('project_name', $project?->project_name) }}" placeholder="e.g. Virtual Campus Tour" class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('project_name') border-red-500 @else border-gray-200 @enderror" required>
                         @error('project_name')
                         <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
-                        <label for="url_image_project" class="mb-2 block text-sm font-semibold text-gray-700">Project image <span class="text-[#D21502]">*</span></label>
+                        <label for="url_image_project" class="mb-2 block text-sm font-semibold text-gray-700">Project image @unless ($isEdit)<span class="text-[#D21502]">*</span>@endunless</label>
                         <div class="relative">
                             <i class="fa-regular fa-image pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="file" id="url_image_project" name="url_image_project" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="w-full rounded-xl border bg-gray-50 py-3 pl-11 pr-4 text-sm text-gray-900 outline-none transition file:mr-4 file:rounded-lg file:border-0 file:bg-[#2D3748] file:px-3 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-[#1A202C] focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('url_image_project') border-red-500 @else border-gray-200 @enderror" required>
+                            <input type="file" id="url_image_project" name="url_image_project" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="w-full rounded-xl border bg-gray-50 py-3 pl-11 pr-4 text-sm text-gray-900 outline-none transition file:mr-4 file:rounded-lg file:border-0 file:bg-[#2D3748] file:px-3 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-[#1A202C] focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('url_image_project') border-red-500 @else border-gray-200 @enderror" {{ $isEdit ? '' : 'required' }}>
                         </div>
-                        <p class="mt-2 text-xs text-gray-400">JPG atau PNG, maksimal 5 MB.</p>
+                        <p class="mt-2 text-xs text-gray-400">{{ $isEdit ? 'Biarkan kosong jika tidak ingin mengganti gambar.' : 'JPG atau PNG, maksimal 5 MB.' }}</p>
+                        @if ($isEdit && $project->url_image_project)
+                            <img src="{{ asset('storage/' . $project->url_image_project) }}" alt="{{ $project->project_name }}" class="mt-4 h-32 w-full rounded-xl object-cover">
+                        @endif
                         @error('url_image_project')
                         <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
                         @enderror
@@ -80,10 +88,10 @@
                             <i class="fa-solid fa-layer-group pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                             <select id="category_project" name="category_project" class="w-full appearance-none rounded-xl border bg-gray-50 py-3.5 pl-11 pr-10 text-sm text-gray-900 outline-none transition focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('category_project') border-red-500 @else border-gray-200 @enderror" required>
                                 <option value="">Select a category</option>
-                                <option value="ar/vr" {{ old('category_project') == 'ar/vr' ? 'selected' : '' }}>AR/VR</option>
-                                <option value="game" {{ old('category_project') == 'game' ? 'selected' : '' }}>Game</option>
-                                <option value="web/mobile" {{ old('category_project') == 'web/mobile' ? 'selected' : '' }}>Web/Mobile</option>
-                                <option value="3d design" {{ old('category_project') == '3d design' ? 'selected' : '' }}>3D Design</option>
+                                <option value="ar/vr" {{ old('category_project', $project?->category_project) == 'ar/vr' ? 'selected' : '' }}>AR/VR</option>
+                                <option value="game" {{ old('category_project', $project?->category_project) == 'game' ? 'selected' : '' }}>Game</option>
+                                <option value="web/mobile" {{ old('category_project', $project?->category_project) == 'web/mobile' ? 'selected' : '' }}>Web/Mobile</option>
+                                <option value="3d design" {{ old('category_project', $project?->category_project) == '3d design' ? 'selected' : '' }}>3D Design</option>
                             </select>
                             <i class="fa-solid fa-chevron-down pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400"></i>
                         </div>
@@ -96,7 +104,7 @@
                 <div class="mt-10 flex flex-col-reverse gap-3 border-t border-gray-100 pt-6 sm:flex-row sm:justify-end">
                     <a href="{{ route('projects.index') }}" class="inline-flex items-center justify-center rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-600 transition hover:border-gray-300 hover:bg-gray-50">Cancel</a>
                     <button type="submit" class="group inline-flex items-center justify-center gap-3 rounded-xl bg-[#D21502] px-5 py-3 font-poppins text-sm font-semibold text-white shadow-lg shadow-[#D21502]/20 transition hover:bg-[#b71102] hover:shadow-xl hover:shadow-[#D21502]/25">
-                        Save project
+                        {{ $isEdit ? 'Update project' : 'Save project' }}
                         <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
                     </button>
                 </div>
