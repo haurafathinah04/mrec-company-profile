@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Support\Facades\Storage;
 
 #[Fillable(['project_name', 'url_image_project', 'category_project'])]
-#[Hidden(['id', 'created_at', 'updated_at'])]
 class Project extends Model
 {
     protected static function booted(): void

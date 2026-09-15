@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProjectController;
 
 
@@ -26,9 +27,7 @@ Route::get('/services', function () {
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 // Blog
-Route::get('/blog', function () {
-    return view('pages.blog');
-})->name('blog');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 // Route Our Members mengarah ke file pages/team.blade.php
 Route::get('/our-members', function () {
@@ -46,6 +45,7 @@ Route::post('/logout', Logout::class)
     ->middleware('auth')
     ->name('logout');
 
+    
 Route::middleware('auth')->group(function () {
     Route::get('/password_edit', function () {
         return view('pages.auth.password_edit');
@@ -64,4 +64,15 @@ Route::middleware('auth')->group(function () {
         ->name('projects.update');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
         ->name('projects.destroy');
+
+    Route::get('/blog/create', [BlogController::class, 'create'])
+        ->name('blogs.create');
+    Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])
+        ->name('blogs.edit');
+    Route::post('/blog', [BlogController::class, 'store'])
+        ->name('blogs.store');
+    Route::put('/blog/{blog}', [BlogController::class, 'update'])
+        ->name('blogs.update');
+    Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])
+        ->name('blogs.destroy');
 });

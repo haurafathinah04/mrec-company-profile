@@ -47,31 +47,28 @@
     <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16">
         
         <!-- Judul Bagian -->
-        <h2 class="font-poppins font-bold text-[32px] sm:text-[36px] text-[#2D3748] text-center mb-12">
-            Latest Stories
-        </h2>
+        <div class="mb-12 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <h2 class="font-poppins font-bold text-[32px] sm:text-[36px] text-[#2D3748]">
+                Latest Stories
+            </h2>
 
-        <!-- Grid 6 Kartu Blog -->
+            @auth
+                <a href="{{ route('blogs.create') }}"
+                   class="inline-flex shrink-0 items-center gap-1.5 self-start rounded-lg bg-[#D21502] px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm shadow-[#D21502]/30 transition hover:bg-[#b71102] sm:self-auto">
+                    <i class="fa-solid fa-plus text-[10px]"></i>
+                    Tambah blog
+                </a>
+            @endauth
+        </div>
+
+        <!-- Grid Blog -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            
-            @php
-                // Dummy data untuk iterasi 6 kartu blog
-                $blogs = [
-                    ['title' => 'AR Based Indoor Navigation (Geo Navigasi)', 'date' => '04 Nov 2025'],
-                    ['title' => 'AR Based Indoor Navigation (Geo Navigasi)', 'date' => '04 Nov 2025'],
-                    ['title' => 'AR Based Indoor Navigation (Geo Navigasi)', 'date' => '04 Nov 2025'],
-                    ['title' => 'AR Based Indoor Navigation (Geo Navigasi)', 'date' => '04 Nov 2025'],
-                    ['title' => 'AR Based Indoor Navigation (Geo Navigasi)', 'date' => '04 Nov 2025'],
-                    ['title' => 'AR Based Indoor Navigation (Geo Navigasi)', 'date' => '04 Nov 2025'],
-                ];
-            @endphp
-
             @foreach($blogs as $blog)
             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col">
                 <!-- Thumbnail -->
                 <div class="w-full aspect-[16/10] bg-gray-100 overflow-hidden">
-                    <img src="{{ asset('storage/images/HeroAbout.png') }}" 
-                         alt="{{ $blog['title'] }}" 
+                    <img src="{{ asset('storage/' . $blog->url) }}"
+                         alt="{{ $blog->judul }}"
                          class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
 
@@ -80,30 +77,69 @@
                     <div>
                         <div class="flex items-center justify-between mb-3 text-[13px] font-poppins font-semibold">
                             <span class="text-[#D21502] uppercase tracking-wider">BLOG</span>
-                            <span class="text-[#D21502]">{{ $blog['date'] }}</span>
+                            <span class="text-[#D21502]">{{ $blog->created_at->format('d M Y') }}</span>
                         </div>
-                        <h3 class="font-poppins font-semibold text-[18px] text-gray-900 leading-snug hover:text-[#D21502] transition-colors cursor-pointer">
-                            {{ $blog['title'] }}
+                        <h3 class="font-poppins font-semibold text-[18px] text-gray-900 leading-snug transition-colors hover:text-[#D21502]">
+                            {{ $blog->judul }}
                         </h3>
+                        <p class="mt-3 line-clamp-3 font-hanken text-sm leading-relaxed text-gray-500">
+                            {{ $blog->deskripsi }}
+                        </p>
                     </div>
+
+                    @auth
+                        <div class="mt-6 flex items-center justify-end gap-2 border-t border-gray-100 pt-3">
+                            <a href="{{ route('blogs.edit', $blog) }}" class="inline-flex items-center gap-1 rounded-md bg-amber-500 px-2.5 py-1 text-[11px] font-semibold text-white transition hover:bg-amber-600">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Edit
+                            </a>
+                            <form action="{{ route('blogs.destroy', $blog) }}" method="POST" onsubmit="return confirm('Hapus blog ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="inline-flex items-center gap-1 rounded-md bg-red-600 px-2.5 py-1 text-[11px] font-semibold text-white transition hover:bg-red-700">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
             </div>
             @endforeach
 
+            @if ($blogs->isEmpty())
+                <div class="col-span-full rounded-2xl border border-dashed border-gray-200 px-6 py-16 text-center">
+                    <p class="font-poppins text-lg font-semibold text-[#2D3748]">Belum ada blog.</p>
+                    <p class="mt-2 font-hanken text-gray-500">Artikel yang ditambahkan akan tampil di halaman ini.</p>
+                </div>
+            @endif
+
         </div>
 
         <!-- Pagination -->
-        <div class="flex items-center justify-center gap-2 font-poppins font-semibold text-[14px]">
-            <button class="w-9 h-9 rounded-lg bg-[#2D3748] text-white flex items-center justify-center shadow-sm">
-                1
-            </button>
-            <button class="w-9 h-9 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 flex items-center justify-center transition">
-                2
-            </button>
-            <button class="px-4 h-9 rounded-lg bg-[#2D3748] text-white flex items-center justify-center shadow-sm hover:bg-[#1A202C] transition">
-                Next
-            </button>
-        </div>
+       @if ($blogs->hasPages())
+            <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Blogs pagination">
+                @if ($blogs->onFirstPage())
+                    <span class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-400">Previous</span>
+                @else
+                    <a href="{{ $blogs->previousPageUrl() }}" class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600 transition hover:bg-gray-200">Previous</a>
+                @endif
+
+                @for ($page = 1; $page <= $blogs->lastPage(); $page++)
+                    @if ($page === $blogs->currentPage())
+                        <span class="h-8 min-w-8 rounded-md bg-[#2D3748] px-2 py-2 text-center text-xs font-bold text-white" aria-current="page">{{ $page }}</span>
+                    @else
+                        <a href="{{ $blogs->url($page) }}" class="h-8 min-w-8 rounded-md bg-gray-100 px-2 py-2 text-center text-xs font-bold text-gray-600 transition hover:bg-gray-200">{{ $page }}</a>
+                    @endif
+                @endfor
+
+                @if ($blogs->hasMorePages())
+                    <a href="{{ $blogs->nextPageUrl() }}" class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600 transition hover:bg-gray-200">Next</a>
+                @else
+                    <span class="rounded-md bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-400">Next</span>
+                @endif
+            </nav>
+        @endif
 
     </div>
 </section>
