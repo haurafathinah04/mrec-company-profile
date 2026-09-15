@@ -37,7 +37,7 @@
     </div>
 
     <!-- Category Filters & Add Project Button -->
-    <div class="w-full max-w-[1280px] mx-auto px-6 lg:px-[68px] mt-[44px] relative flex flex-col md:flex-row items-center justify-center">
+    <div class="w-full max-w-[1280px] mx-auto px-6 lg:px-[48.34px] mt-[44px] relative flex flex-col md:flex-row items-center justify-center">
         
         <!-- Kategori di Tengah -->
         <div class="w-[470px] h-[32px] inline-flex items-center justify-between bg-[#384354] px-1.5 rounded-full">
@@ -55,7 +55,7 @@
 
         <!-- Add Project (Tampil untuk Admin) -->
         @auth
-            <div class="mt-4 md:mt-0 md:absolute md:right-[68px]">
+            <div class="mt-4 md:mt-0 md:absolute md:right-[48.34px]">
                 <a href="{{ route('projects.create') }}" class="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-[#D21502] px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm shadow-[#D21502]/30 transition hover:bg-[#b71102]">
                     <i class="fa-solid fa-plus text-[10px]"></i>
                     Add project
@@ -65,33 +65,41 @@
     </div>
 </section>
 
-<!-- Projects Grid (Jarak atas 24px ke nav kategori, column-gap persis 30.67px, row-gap 30px) -->
+<!-- Projects Grid -->
 <section class="bg-[#F7F9FB]" style="padding-top: 24px; padding-bottom: 64px;">
-    <div class="w-full max-w-[1214px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-[1280px] mx-auto px-[48.34px]">
+        
+        <!-- Notifikasi Sukses -->
+        @if (session('success'))
+            <div class="mb-6 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 shadow-sm">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center" style="grid-template-columns: repeat(3, 374px); column-gap: 30.67px; row-gap: 30px; justify-content: center;">
 
             @forelse ($projects as $project)
-            <!-- Card Frame Utama: W: 374px, H: 354px -->
-            <article class="w-[374px] h-[354px] bg-white rounded-3xl border-2 border-gray-300 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.18),0_6px_16px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col relative">
-                
-                <!-- Foto Container: W: 374px (full), H: 242px -->
-                <div class="w-full h-[242px] bg-gray-200 relative overflow-hidden shrink-0">
-                    <img src="{{ asset('storage/' . $project->url_image_project) }}" alt="{{ $project->project_name }}" class="w-full h-full object-cover">
-                </div>
-
-                <!-- Kotak Putih Teks: W: 372px, H: 110px dengan jarak kategori ke nama project 12px -->
-                <div class="w-[372px] h-[110px] bg-white px-4 pt-3 flex flex-col justify-between shrink-0 mx-auto pb-3">
-                    <div>
-                        <span class="font-poppins font-semibold text-[14px] text-[#D21502] tracking-wider uppercase mb-[12px] block">
-                            {{ $project->category_project }}
-                        </span>
-                        <h2 class="font-poppins font-semibold text-[20px] text-gray-900 leading-snug line-clamp-1">
-                            {{ $project->project_name }}
-                        </h2>
+            
+            @auth
+                <!-- ================= TAMPILAN CARD KHUSUS ADMIN (TANPA OVERLAY) ================= -->
+                <article class="w-[374px] h-[354px] bg-white rounded-3xl border-2 border-gray-300 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.08)] flex flex-col relative">
+                    
+                    <!-- Foto Utama Tetap Utuh di Atas -->
+                    <div class="w-full h-[242px] bg-gray-100 overflow-hidden shrink-0">
+                        <img src="{{ asset('storage/' . $project->url_image_project) }}" alt="{{ $project->project_name }}" class="w-full h-full object-cover">
                     </div>
 
-                    <!-- Tombol Edit & Delete khusus Admin (Berada di dalam kotak putih H:110px) -->
-                    @auth
+                    <!-- Kotak Teks Bawah Beserta Tombol Edit & Hapus -->
+                    <div class="w-[372px] h-[110px] bg-white px-4 pt-3 flex flex-col justify-between shrink-0 mx-auto pb-3">
+                        <div>
+                            <span class="font-poppins font-semibold text-[14px] text-[#D21502] tracking-wider uppercase mb-[12px] block">
+                                {{ $project->category_project }}
+                            </span>
+                            <h2 class="font-poppins font-semibold text-[20px] text-gray-900 leading-snug line-clamp-1">
+                                {{ $project->project_name }}
+                            </h2>
+                        </div>
+
                         <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-100">
                             <!-- Tombol Edit -->
                             <a href="{{ route('projects.edit', $project->id) }}" class="inline-flex items-center gap-1 bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-semibold px-2.5 py-1 rounded-md transition">
@@ -107,9 +115,56 @@
                                 </button>
                             </form>
                         </div>
-                    @endauth
-                </div>
-            </article>
+                    </div>
+                </article>
+
+            @else
+                <!-- ================= TAMPILAN CARD UNTUK USER/GUEST (DENGAN HOVER OVERLAY) ================= -->
+                <article class="w-[374px] h-[354px] bg-white rounded-3xl border-2 border-gray-300 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.18),0_6px_16px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col relative group">
+                    
+                    <!-- 1. FOTO UTAMA (Nge-zoom dan menggeser teks saat di-hover) -->
+                    <div class="absolute inset-0 w-full h-full bg-gray-100 overflow-hidden z-10">
+                        <img src="{{ asset('storage/' . $project->url_image_project) }}" alt="{{ $project->project_name }}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
+                    </div>
+
+                    <!-- 2. KOTAK TEKS PUTIH BAWAH (Normal tampil di bawah, tergeser ke bawah/keluar saat di-hover) -->
+                    <div class="w-[372px] h-[110px] bg-white px-4 pt-3 flex flex-col justify-between shrink-0 mx-auto pb-3 mt-[244px] relative z-20 transition-transform duration-500 ease-out group-hover:translate-y-[110px]">
+                        <div>
+                            <span class="font-poppins font-semibold text-[14px] text-[#D21502] tracking-wider uppercase mb-[12px] block">
+                                {{ $project->category_project }}
+                            </span>
+                            <h2 class="font-poppins font-semibold text-[20px] text-gray-900 leading-snug line-clamp-1">
+                                {{ $project->project_name }}
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- 3. SLIDE TRANSPARAN OVERLAY (Muncul menutupi full card dengan tulisan & tombol Read More) -->
+                    <div class="absolute inset-0 bg-[#384354]/75 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between z-30">
+                        
+                        <!-- Bagian Teks Detail Project -->
+                        <div class="transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+                            <span class="font-poppins font-semibold text-[12px] text-[#D21502] tracking-wider uppercase block mb-1">
+                                {{ $project->category_project }}
+                            </span>
+                            <h3 class="font-poppins font-bold text-[22px] text-white leading-snug mb-3 line-clamp-2">
+                                {{ $project->project_name }}
+                            </h3>
+                            <p class="font-hanken text-gray-200 text-[14px] leading-relaxed line-clamp-4">
+                                {{ $project->description ?? 'Discover innovative solutions and creative design brought to life through this project.' }}
+                            </p>
+                        </div>
+
+                        <!-- Tombol Read More Oval W:324px H:46px Garis Putih Teks Putih Poppins Semibold 14 -->
+                        <div class="flex justify-center">
+                            <a href="{{ route('projects.show', $project->id) }}" class="w-[324px] h-[46px] rounded-full border-2 border-white text-white font-poppins font-semibold text-[14px] inline-flex items-center justify-center gap-2 transition-all duration-200 hover:bg-white hover:text-[#384354]">
+                                Read more <i class="fa-solid fa-arrow-right text-[12px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            @endauth
+
             @empty
                 <div class="col-span-full rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center shadow-sm">
                     <i class="fa-solid fa-cube text-2xl text-gray-300"></i>
@@ -120,6 +175,7 @@
 
         </div>
 
+        <!-- Pagination -->
         @if ($projects->hasPages())
             <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Projects pagination">
                 @if ($projects->onFirstPage())

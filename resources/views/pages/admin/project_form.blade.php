@@ -59,6 +59,7 @@
                 </div>
 
                 <div class="space-y-6">
+                    <!-- Project Name -->
                     <div>
                         <label for="project_name" class="mb-2 block text-sm font-semibold text-gray-700">Project name <span class="text-[#D21502]">*</span></label>
                         <input type="text" id="project_name" name="project_name" value="{{ old('project_name', $project?->project_name) }}" placeholder="e.g. Virtual Campus Tour" class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('project_name') border-red-500 @else border-gray-200 @enderror" required>
@@ -67,6 +68,37 @@
                         @enderror
                     </div>
 
+                    <!-- Grid untuk Tahun & Anggota Tim -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Year -->
+                        <div>
+                            <label for="year" class="mb-2 block text-sm font-semibold text-gray-700">Year</label>
+                            <input type="number" id="year" name="year" value="{{ old('year', $project?->year) }}" placeholder="e.g. 2026" class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('year') border-red-500 @else border-gray-200 @enderror">
+                            @error('year')
+                            <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Team Members -->
+                        <div>
+                            <label for="team_members" class="mb-2 block text-sm font-semibold text-gray-700">Team members</label>
+                            <input type="text" id="team_members" name="team_members" value="{{ old('team_members', $project?->team_members) }}" placeholder="e.g. John Doe, Sarah" class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('team_members') border-red-500 @else border-gray-200 @enderror">
+                            @error('team_members')
+                            <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Project Description -->
+                    <div>
+                        <label for="description" class="mb-2 block text-sm font-semibold text-gray-700">Project description</label>
+                        <textarea id="description" name="description" rows="3" placeholder="Tuliskan penjelasan singkat mengenai project..." class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('description') border-red-500 @else border-gray-200 @enderror">{{ old('description', $project?->description) }}</textarea>
+                        @error('description')
+                        <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Project Image -->
                     <div>
                         <label for="url_image_project" class="mb-2 block text-sm font-semibold text-gray-700">Project image @unless ($isEdit)<span class="text-[#D21502]">*</span>@endunless</label>
                         <div class="relative">
@@ -82,6 +114,7 @@
                         @enderror
                     </div>
 
+                    <!-- Project Category -->
                     <div>
                         <label for="category_project" class="mb-2 block text-sm font-semibold text-gray-700">Project category <span class="text-[#D21502]">*</span></label>
                         <div class="relative">
