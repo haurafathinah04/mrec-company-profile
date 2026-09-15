@@ -22,11 +22,10 @@ Route::get('/services', function () {
     return view('pages.services');
 })->name('services');
 
-// Projects (Index & Detail)
+// Projects Index
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
-// Blog (Index)
+// Blog Index
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 // Our Members
@@ -50,17 +49,20 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/password_edit', [PasswordController::class, 'update'])->name('password.update');
 
-    // Admin Project Routes (Create HARUS di atas {project})
+    // Admin Project Routes
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
     Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-    // Admin Blog Routes (Create HARUS di atas {blog})
+    // Admin Blog Routes
     Route::get('/blog/create', [BlogController::class, 'create'])->name('blogs.create');
     Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::post('/blog', [BlogController::class, 'store'])->name('blogs.store');
     Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 });
+
+// Project Detail & Blog Detail
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
