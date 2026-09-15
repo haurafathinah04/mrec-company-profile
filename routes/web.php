@@ -26,11 +26,7 @@ Route::get('/services', function () {
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
-<<<<<<< HEAD
 // Blog (Index)
-=======
-// Blog
->>>>>>> c1c14db903a294fc759c4db6f16c2f302847b93d
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 // Our Members
@@ -46,11 +42,7 @@ Route::get('/login', function () {
 Route::post('/login', Login::class)->middleware('guest');
 Route::post('/logout', Logout::class)->middleware('auth')->name('logout');
 
-<<<<<<< HEAD
 // Admin Protected Routes
-=======
-    
->>>>>>> c1c14db903a294fc759c4db6f16c2f302847b93d
 Route::middleware('auth')->group(function () {
     Route::get('/password_edit', function () {
         return view('pages.auth.password_edit');
@@ -58,7 +50,6 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/password_edit', [PasswordController::class, 'update'])->name('password.update');
 
-<<<<<<< HEAD
     // Admin Project Routes (Create HARUS di atas {project})
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
@@ -73,27 +64,3 @@ Route::middleware('auth')->group(function () {
     Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 });
-=======
-    Route::get('/projects/create', [ProjectController::class, 'create'])
-        ->name('projects.create');
-    Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])
-        ->name('projects.edit');
-    Route::post('/projects', [ProjectController::class, 'store'])
-        ->name('projects.store');
-    Route::put('/projects/{project}', [ProjectController::class, 'update'])
-        ->name('projects.update');
-    Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
-        ->name('projects.destroy');
-
-    Route::get('/blog/create', [BlogController::class, 'create'])
-        ->name('blogs.create');
-    Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])
-        ->name('blogs.edit');
-    Route::post('/blog', [BlogController::class, 'store'])
-        ->name('blogs.store');
-    Route::put('/blog/{blog}', [BlogController::class, 'update'])
-        ->name('blogs.update');
-    Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])
-        ->name('blogs.destroy');
-});
->>>>>>> c1c14db903a294fc759c4db6f16c2f302847b93d
