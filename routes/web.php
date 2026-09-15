@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProjectController;
 
 // Home
@@ -21,13 +22,12 @@ Route::get('/services', function () {
     return view('pages.services');
 })->name('services');
 
-// Projects Index (Daftar Project)
+// Projects (Index & Detail)
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
-// Blog
-Route::get('/blog', function () {
-    return view('pages.blog');
-})->name('blog');
+// Blog (Index)
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 // Our Members
 Route::get('/our-members', function () {
@@ -50,17 +50,17 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/password_edit', [PasswordController::class, 'update'])->name('password.update');
 
-    // 1. Form Tambah Project (HARUS di atas route {project})
+    // Admin Project Routes (Create HARUS di atas {project})
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
-    
-    // 2. Form Edit Project
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
-    
-    // 3. Aksi Store, Update, Destroy
     Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
     Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
-});
 
-// Projects Show Detail (HARUS DI BAWAH agar kata "create" tidak dianggap sebagai ID project)
-Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
+    // Admin Blog Routes (Create HARUS di atas {blog})
+    Route::get('/blog/create', [BlogController::class, 'create'])->name('blogs.create');
+    Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::post('/blog', [BlogController::class, 'store'])->name('blogs.store');
+    Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+});
