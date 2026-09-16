@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $blogs = Blog::query()
@@ -20,21 +17,16 @@ class BlogController extends Controller
         return view('pages.blog', compact('blogs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pages.admin.blog_form', ['blog' => null]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'judul' => ['required', 'string', 'max:255'],
+            'link' => ['required', 'url', 'max:255'],
             'gambar' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:5120'],
             'deskripsi' => ['required', 'string'],
         ]);
@@ -45,33 +37,30 @@ class BlogController extends Controller
         Blog::create($validated);
 
         return redirect()
-            ->route('blogs.create')
+            ->route('blog')
             ->with('success', 'Blog berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Blog $blog)
     {
-        //
+        // Pengaman jika link blog bernilai kosong/null
+        if (!$blog->link) {
+            return redirect()->route('blog')->with('error', 'Link blog belum tersedia.');
+        }
+
+        return redirect()->away($blog->link);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Blog $blog)
     {
         return view('pages.admin.blog_form', compact('blog'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Blog $blog)
     {
         $validated = $request->validate([
             'judul' => ['required', 'string', 'max:255'],
+            'link' => ['required', 'url', 'max:255'],
             'gambar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:5120'],
             'deskripsi' => ['required', 'string'],
         ]);
@@ -90,9 +79,6 @@ class BlogController extends Controller
             ->with('success', 'Blog berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Blog $blog)
     {
         Storage::disk('public')->delete($blog->url);

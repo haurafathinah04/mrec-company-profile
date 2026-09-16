@@ -64,5 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 });
 
-// Project Detail & Blog Detail
+// Project Detail & Blog Detail (HARUS PALING BAWAH)
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blogs.show');
