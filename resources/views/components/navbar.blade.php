@@ -6,7 +6,7 @@
         <!-- WRAPPER KIRI: LOGO + MENU NAVIGASI -->
         <div class="flex items-center gap-8 lg:gap-14">
             <!-- Logo MREC (w-24 h-16) -->
-            <a href="{{ url('/login') }}" class="flex items-center flex-shrink-0">
+            <a class="flex items-center flex-shrink-0">
                 <img src="{{ asset('storage/images/LogoMrecBig.png') }}" 
                      alt="Logo MREC" 
                      class="w-24 h-16 object-contain">
