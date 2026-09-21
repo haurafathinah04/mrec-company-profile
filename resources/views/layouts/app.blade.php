@@ -15,6 +15,7 @@
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ asset('css/page-wipe.css') }}">
 
     <!-- Config Font Custom CDN -->
     <script>
@@ -32,6 +33,11 @@
     </script>
 </head>
 <body class="bg-white text-gray-800 antialiased font-hanken">
+    <div id="pageWipe" aria-hidden="true">
+    <div class="panel"></div>
+    <div class="ring"></div>
+    <div class="mark"></div>
+</div>
 
     @include('components.navbar')
 
@@ -44,5 +50,6 @@
         @include('components.footer')
     @endunless
 
+    <script src="{{ asset('js/page-wipe.js') }}"></script>
 </body>
 </html>
