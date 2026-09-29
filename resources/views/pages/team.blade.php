@@ -145,7 +145,7 @@
         <div>
             <h2 class="font-poppins text-3xl font-bold text-slate-800 sm:text-4xl">Member of MREC?</h2>
             <p class="mt-3 text-slate-600">Scan your ID card here and check your membership status.</p>
-            <a href="{{ route('contact') }}"
+            <a href="{{ route('contact.index') }}"
                class="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#D21502] px-6 py-3 font-poppins text-sm font-semibold text-white transition hover:bg-[#AD1203]">
                 <i class="fa-solid fa-id-card"></i> Go to website
             </a>
@@ -155,5 +155,4 @@
     </div>
 </section>
 
-@include('components.cta')
 @endsection
