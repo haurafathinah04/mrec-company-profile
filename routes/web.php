@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ContactController;
 
 // Home
 Route::get('/', function () {
@@ -32,6 +33,12 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/our-members', function () {
     return view('pages.team');
 })->name('our-members');
+
+// ==========================================
+// CONTACT ROUTES (Halaman Publik & Submit Form)
+// ==========================================
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Auth Routes
 Route::get('/login', function () {
@@ -62,8 +69,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/blog', [BlogController::class, 'store'])->name('blogs.store');
     Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+    // ==========================================
+    // ADMIN CONTACT ROUTES (Kelola Pesan & Info Maps/Alamat)
+    // ==========================================
+    Route::get('/admin/contact/messages', [ContactController::class, 'adminMessages'])->name('admin.contact.messages');
+    Route::delete('/admin/contact/messages/{id}', [ContactController::class, 'destroyMessage'])->name('admin.contact.messages.destroy');
+    Route::get('/admin/contact/settings', [ContactController::class, 'adminSettings'])->name('admin.contact.settings');
+    Route::put('/admin/contact/settings', [ContactController::class, 'updateSettings'])->name('admin.contact.settings.update');
 });
 
-// Project Detail & Blog Detail (HARUS PALING BAWAH)
+// Project Detail & Blog Detail (Wajib Paling Bawah)
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blogs.show');
