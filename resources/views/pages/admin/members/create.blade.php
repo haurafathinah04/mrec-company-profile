@@ -1,0 +1,115 @@
+@extends('layouts.app')
+
+@section('title', 'Add New Member - MREC')
+
+@section('content')
+<div class="min-h-screen bg-[#FBFBFC] pt-28 pb-16">
+    <div class="max-w-2xl mx-auto px-6">
+        
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+            <div class="mb-8 border-b border-gray-100 pb-4">
+                <h1 class="font-poppins font-semibold text-2xl text-gray-900">Add New Member</h1>
+                <p class="font-hanken text-sm text-gray-500 mt-1">Tambahkan anggota baru ke dalam struktur tim MREC.</p>
+            </div>
+
+            <form action="{{ route('admin.members.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                @csrf
+
+                <!-- Kategori -->
+                <div>
+                    <label for="category" class="block font-poppins font-medium text-sm text-gray-700 mb-2">
+                        Kategori <span class="text-[#D21502]">*</span>
+                    </label>
+                    <select name="category" id="category" required 
+                            class="w-full h-11 px-4 rounded-xl border border-gray-300 focus:border-[#D21502] focus:ring-1 focus:ring-[#D21502] font-hanken text-gray-800 transition-all outline-none bg-white">
+                        <option value="" disabled selected>-- Pilih Kategori --</option>
+                        <option value="leader">Leader</option>
+                        <option value="project_manager">Project Management</option>
+                        <option value="lecturer">Lecturers</option>
+                        <option value="developer">Development & Engineering</option>
+                        <option value="designer">Design & Generalist</option>
+                        <option value="alumni">Alumni</option>
+                    </select>
+                </div>
+
+                <!-- Nama Lengkap -->
+                <div>
+                    <label for="name" class="block font-poppins font-medium text-sm text-gray-700 mb-2">
+                        Nama Lengkap <span class="text-[#D21502]">*</span>
+                    </label>
+                    <input type="text" name="name" id="name" required placeholder="Masukkan nama lengkap"
+                           class="w-full h-11 px-4 rounded-xl border border-gray-300 focus:border-[#D21502] focus:ring-1 focus:ring-[#D21502] font-hanken text-gray-800 transition-all outline-none">
+                </div>
+
+                <!-- Role / Title -->
+                <div id="role-field">
+                    <label for="role" id="role-label" class="block font-poppins font-medium text-sm text-gray-700 mb-2">
+                        Role / Title <span class="text-[#D21502]">*</span>
+                    </label>
+                    <input type="text" name="role" id="role" placeholder="Contoh: Lead Developer / VR Researcher"
+                           class="w-full h-11 px-4 rounded-xl border border-gray-300 focus:border-[#D21502] focus:ring-1 focus:ring-[#D21502] font-hanken text-gray-800 transition-all outline-none">
+                </div>
+
+                <!-- Foto Profil -->
+                <div id="image-field">
+                    <label for="image" class="block font-poppins font-medium text-sm text-gray-700 mb-2">
+                        Foto Profil <span class="text-[#D21502]">*</span>
+                    </label>
+                    <input type="file" name="image" id="image" accept="image/*"
+                           class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-poppins file:font-semibold file:bg-[#FFF5F5] file:text-[#D21502] hover:file:bg-[#fee2e2] cursor-pointer transition-all border border-gray-300 rounded-xl p-1">
+                    <p class="font-hanken text-xs text-gray-400 mt-1">Format: JPG, PNG, WEBP (Max. 2MB)</p>
+                </div>
+
+                <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
+                    <a href="{{ route('our-members') }}" 
+                       class="px-5 h-11 inline-flex items-center justify-center font-poppins font-medium text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl transition-all">
+                        Batal
+                    </a>
+                    <button type="submit" 
+                            class="px-6 h-11 inline-flex items-center justify-center font-poppins font-semibold text-sm text-white bg-[#D21502] hover:bg-[#b01101] rounded-xl shadow-sm transition-all">
+                        Simpan Member
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.getElementById('category');
+        const roleField = document.getElementById('role-field');
+        const imageField = document.getElementById('image-field');
+        const roleInput = document.getElementById('role');
+        const imageInput = document.getElementById('image');
+        const roleLabel = document.getElementById('role-label');
+
+        categorySelect.addEventListener('change', function () {
+            const value = this.value;
+
+            if (value === 'alumni') {
+                roleField.classList.add('hidden');
+                imageField.classList.add('hidden');
+                roleInput.removeAttribute('required');
+                imageInput.removeAttribute('required');
+                roleInput.value = '';
+                imageInput.value = '';
+            } else {
+                roleField.classList.remove('hidden');
+                imageField.classList.remove('hidden');
+                roleInput.setAttribute('required', 'required');
+                imageInput.setAttribute('required', 'required');
+
+                if (value === 'lecturer') {
+                    roleLabel.innerHTML = 'Departemen / Program Studi <span class="text-[#D21502]">*</span>';
+                    roleInput.placeholder = 'Contoh: School of Computing / Informatics';
+                } else {
+                    roleLabel.innerHTML = 'Role / Title <span class="text-[#D21502]">*</span>';
+                    roleInput.placeholder = 'Contoh: Lead Developer / UI Design Expert';
+                }
+            }
+        });
+    });
+</script>
+@endsection

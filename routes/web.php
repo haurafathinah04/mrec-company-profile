@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MemberController;
 
 // Home
 Route::get('/', function () {
@@ -29,10 +30,8 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects.ind
 // Blog Index
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
-// Our Members
-Route::get('/our-members', function () {
-    return view('pages.team');
-})->name('our-members');
+// Our Members (Publik)
+Route::get('/our-members', [MemberController::class, 'showTeam'])->name('our-members');
 
 // ==========================================
 // CONTACT ROUTES (Halaman Publik & Submit Form)
@@ -69,6 +68,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/blog', [BlogController::class, 'store'])->name('blogs.store');
     Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+    // ==========================================
+    // ADMIN MEMBER / OUR MEMBERS ROUTES
+    // ==========================================
+    Route::get('/admin/members', [MemberController::class, 'index'])->name('admin.members.index');
+    Route::get('/admin/members/create', [MemberController::class, 'create'])->name('admin.members.create');
+    Route::post('/admin/members', [MemberController::class, 'store'])->name('admin.members.store');
+    Route::get('/admin/members/{member}/edit', [MemberController::class, 'edit'])->name('admin.members.edit');
+    Route::put('/admin/members/{member}', [MemberController::class, 'update'])->name('admin.members.update');
+    Route::delete('/admin/members/{member}', [MemberController::class, 'destroy'])->name('admin.members.destroy');
+    Route::patch('/admin/members/{member}/move-to-alumni', [MemberController::class, 'moveToAlumni'])->name('admin.members.moveToAlumni');
 
     // ==========================================
     // ADMIN CONTACT ROUTES (Kelola Pesan & Info Maps/Alamat)
