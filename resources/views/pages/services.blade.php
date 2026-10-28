@@ -57,13 +57,13 @@
     <div class="w-full max-w-[1360px] mx-auto px-6 sm:px-10 flex flex-col gap-12 sm:gap-16">
 
         <!-- ITEM 1: VR/AR DEVELOPMENT -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div id="vr-ar" style="scroll-margin-top: 110px;" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <!-- Foto VR.png -->
             <div class="lg:col-span-5">
                 <div class="w-full h-[280px] sm:h-[320px] rounded-2xl overflow-hidden bg-gray-100 shadow-md border border-gray-200/80">
-                    <img src="{{ asset('storage/images/VR.png') }}" 
+                    <img src="{{ asset('images/services/vr-ar-development.jpg') }}" 
                          alt="VR/AR Development" 
-                         class="w-full h-full object-cover">
+                         class="w-full h-full object-cover object-center" width="736" height="552" loading="lazy">
                 </div>
             </div>
             <!-- Card Penjelasan -->
@@ -78,7 +78,7 @@
         </div>
 
         <!-- ITEM 2: GAME DEVELOPMENT -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div id="game" style="scroll-margin-top: 110px;" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <!-- Card Penjelasan -->
             <div class="lg:col-span-7 order-2 lg:order-1 bg-white p-7 sm:p-10 rounded-3xl border border-gray-200/60 shadow-[0_20px_45px_rgba(0,0,0,0.12)] flex flex-col justify-center">
                 <h2 class="font-poppins font-semibold text-[28px] sm:text-[36px] text-[#D21502] mb-3 uppercase leading-tight">
@@ -91,21 +91,21 @@
             <!-- Foto Gamedev.png -->
             <div class="lg:col-span-5 order-1 lg:order-2">
                 <div class="w-full h-[280px] sm:h-[320px] rounded-2xl overflow-hidden bg-gray-100 shadow-md border border-gray-200/80">
-                    <img src="{{ asset('storage/images/Gamedev.png') }}" 
+                    <img src="{{ asset('images/services/game-development.jpg') }}" 
                          alt="Game Development" 
-                         class="w-full h-full object-cover">
+                         class="w-full h-full object-cover object-center" width="405" height="405" loading="lazy">
                 </div>
             </div>
         </div>
 
         <!-- ITEM 3: 3D DESIGN -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div id="3d-design" style="scroll-margin-top: 110px;" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <!-- Foto 3D.png -->
             <div class="lg:col-span-5">
                 <div class="w-full h-[280px] sm:h-[320px] rounded-2xl overflow-hidden bg-gray-100 shadow-md border border-gray-200/80">
-                    <img src="{{ asset('storage/images/3D.png') }}" 
+                    <img src="{{ asset('images/services/3d-design.jpg') }}" 
                          alt="3D Design" 
-                         class="w-full h-full object-cover">
+                         class="w-full h-full object-cover object-center" width="661" height="1600" loading="lazy">
                 </div>
             </div>
             <!-- Card Penjelasan -->
@@ -120,9 +120,9 @@
         </div>
 
         <!-- ITEM 4: WEB/MOBILE APP DEVELOPMENT -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div id="web-mobile" style="scroll-margin-top: 110px;" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
             <!-- Card Penjelasan -->
-            <div class="lg:col-span-7 order-2 lg:order-1 bg-white p-7 sm:p-10 rounded-3xl border border-gray-200/60 shadow-[0_20px_45px_rgba(0,0,0,0.12)] flex flex-col justify-center">
+            <div class="lg:col-span-6 order-2 lg:order-1 bg-white p-7 sm:p-10 rounded-3xl border border-gray-200/60 shadow-[0_20px_45px_rgba(0,0,0,0.12)] flex flex-col justify-center">
                 <h2 class="font-poppins font-semibold text-[28px] sm:text-[36px] text-[#D21502] mb-3 uppercase leading-tight">
                     WEB/MOBILE APP DEVELOPMENT
                 </h2>
@@ -130,12 +130,12 @@
                     Kami membangun aplikasi web dan mobile yang modern, responsif, dan mudah digunakan untuk mendukung kebutuhan digital organisasi maupun bisnis Anda. Setiap aplikasi dikembangkan dengan fokus pada performa, keamanan, skalabilitas, dan pengalaman pengguna. Mulai dari platform informasi, sistem manajemen, hingga aplikasi berbasis data, kami menyediakan solusi yang dapat diandalkan untuk mendorong transformasi digital Anda.
                 </p>
             </div>
-            <!-- Foto WebMobile.png -->
-            <div class="lg:col-span-5 order-1 lg:order-2">
-                <div class="w-full h-[280px] sm:h-[320px] rounded-2xl overflow-hidden bg-gray-100 shadow-md border border-gray-200/80">
-                    <img src="{{ asset('storage/images/WebMobile.png') }}" 
-                         alt="Web Mobile Development" 
-                         class="w-full h-full object-cover">
+            <!-- Tangkapan layar website MREC untuk layanan Web/Mobile -->
+            <div class="lg:col-span-6 order-1 lg:order-2">
+                <div class="relative w-full h-[280px] sm:h-[320px] lg:h-full lg:min-h-[320px] rounded-2xl overflow-hidden bg-gray-100 shadow-md border border-gray-200/80">
+                    <img src="{{ asset('images/services/web-mobile-development.png') }}"
+                         alt="Tampilan website MREC sebagai contoh pengembangan aplikasi web dan mobile"
+                         class="absolute inset-0 block w-full h-full object-fill" width="1350" height="594" loading="lazy">
                 </div>
             </div>
         </div>
@@ -146,54 +146,15 @@
 <!-- ========================================= -->
 <!-- 3. CALL TO ACTION (CTA) -->
 <!-- ========================================= -->
-<section class="relative w-full bg-[#F8F9FA] overflow-hidden min-h-[450px]">
+{{-- CTA and wave are rendered once by components.footer in layouts.app. --}}
 
-    <div class="absolute -top-[105px] right-[60px] w-[290px] h-[290px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-10"></div>
-    <div class="absolute -bottom-[125px] -right-[55px] w-[270px] h-[270px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-20"></div>
-    <div class="absolute left-[4%] top-[42px] w-[20px] h-[20px] rotate-45 rounded-[2px] bg-[#D21502]/35 pointer-events-none z-10"></div>
 
-    <div class="absolute left-[11%] top-[45px] w-[32%] rotate-6 origin-left pointer-events-none z-10">
-        <div class="h-[1.5px] w-full bg-[#D21502]/35"></div>
-        <div class="h-[1.5px] w-[82%] mt-[14px] ml-[10%] bg-[#D21502]/35"></div>
-    </div>
-
-    <div class="relative z-30 w-full min-h-[450px] flex items-center">
-        <div class="w-full max-w-[1360px] mx-auto px-6 sm:px-10 flex flex-col lg:flex-row items-center justify-between gap-8 py-16">
-
-            <div class="w-full lg:w-1/2 flex flex-col items-start z-30">
-                <h2 class="font-poppins font-semibold text-[36px] sm:text-[48px] leading-[1.1] tracking-tight mb-4 text-[#303B4F]">
-                    Have an Idea <br>
-                    <span class="text-[#D21502]">Worth Exploring?</span>
-                </h2>
-
-                <p class="font-hanken font-normal text-[16px] text-[#3F4A5A] leading-[1.65] max-w-[360px] mb-6">
-                    Let's research, experiment, and build the next experience together.
-                </p>
-
-                <a href="{{ url('/contact') }}"
-                   class="px-6 h-[44px] inline-flex items-center justify-center gap-2 bg-[#D21502] hover:bg-[#b01101] text-white font-poppins font-semibold text-[14px] rounded-lg transition-all duration-200 shadow-sm shrink-0">
-                    <span>Let's Collaborate</span>
-                    <span class="text-[15px]">→</span>
-                </a>
-            </div>
-
-            <div class="hidden lg:flex lg:w-1/2 justify-end z-20">
-                <img src="{{ asset('storage/images/LogoMrecBig.png') }}"
-                     alt="Logo MREC Big"
-                     class="w-[480px] h-auto object-contain">
-            </div>
-
-        </div>
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[78px] sm:h-[88px] lg:h-[98px] pointer-events-none overflow-hidden z-40">
-        <img src="{{ asset('storage/images/Gelombang.png') }}"
-             alt="Gelombang"
-             class="w-full h-full object-fill">
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[3px] bg-[#D21502] z-50"></div>
-
-</section>
-
+<script>
+    // Scroll ke bagian layanan sesuai hash (#vr-ar, #game, #3d-design, #web-mobile)
+    window.addEventListener('load', function () {
+        if (!window.location.hash) return;
+        var target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+        if (target) setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+    });
+</script>
 @endsection

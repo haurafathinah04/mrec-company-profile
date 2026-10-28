@@ -295,7 +295,7 @@
 <!-- ========================================= -->
 <section class="pb-20 bg-[#FBFBFC]">
     <div class="max-w-[1280px] mx-auto px-6">
-        <div class="w-full bg-[#FFF5F5] rounded-3xl border border-gray-200 shadow-sm relative overflow-hidden flex items-center justify-between min-h-[460px]">
+        <div class="w-full bg-[#FFF5F5] rounded-3xl border border-gray-200 shadow-sm relative overflow-hidden flex flex-col lg:flex-row items-center justify-between min-h-[460px]">
             <div class="px-6 sm:px-12 lg:px-16 py-10 z-10 flex flex-col items-start max-w-[580px]">
                 <h2 class="font-poppins font-semibold text-[36px] sm:text-[48px] text-[#D21502] leading-tight">
                     Member of MREC?
@@ -313,9 +313,9 @@
                 </a>
             </div>
 
-            <div class="pr-6 sm:pr-12 lg:pr-16 py-6 z-10 hidden lg:flex justify-end shrink-0">
-                <img src="{{ asset('storage/images/CardID.png') }}" alt="Card ID MREC" 
-                     class="w-[532.4px] h-[422.43px] object-contain animate-float-card">
+            <div class="w-full lg:w-1/2 px-6 sm:px-12 lg:pl-0 lg:pr-16 pb-10 lg:py-6 z-10 flex justify-center lg:justify-end">
+                <img src="{{ asset('images/about/Kartu_Nama_Depan.png') }}" alt="Kartu kontak MREC Telkom University" 
+                     class="block w-full max-w-[340px] lg:max-w-[400px] h-auto object-contain animate-float-card" width="340" height="215" loading="lazy">
             </div>
         </div>
     </div>
@@ -324,51 +324,7 @@
 <!-- ========================================= -->
 <!-- 4. CALL TO ACTION (CTA) SECTION -->
 <!-- ========================================= -->
-<section class="relative w-full bg-[#F8F9FA] overflow-hidden min-h-[450px]">
-    <div class="absolute -top-[105px] right-[60px] w-[290px] h-[290px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-10"></div>
-    <div class="absolute -bottom-[125px] -right-[55px] w-[270px] h-[270px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-20"></div>
-    <div class="absolute left-[4%] top-[42px] w-[20px] h-[20px] rotate-45 rounded-[2px] bg-[#D21502]/35 pointer-events-none z-10"></div>
-
-    <div class="absolute left-[11%] top-[45px] w-[32%] rotate-6 origin-left pointer-events-none z-10">
-        <div class="h-[1.5px] w-full bg-[#D21502]/35"></div>
-        <div class="h-[1.5px] w-[82%] mt-[14px] ml-[10%] bg-[#D21502]/35"></div>
-    </div>
-
-    <div class="relative z-30 w-full min-h-[450px] flex items-center">
-        <div class="w-full max-w-[1280px] mx-auto px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-8 py-16">
-            <div class="w-full lg:w-1/2 flex flex-col items-start z-30">
-                <h2 class="font-poppins font-semibold text-[36px] sm:text-[48px] leading-[1.1] tracking-tight mb-4 text-[#303B4F]">
-                    Have an Idea <br>
-                    <span class="text-[#D21502]">Worth Exploring?</span>
-                </h2>
-
-                <p class="font-hanken font-normal text-[16px] text-[#3F4A5A] leading-[1.65] max-w-[360px] mb-6">
-                    Let's research, experiment, and build the next experience together.
-                </p>
-
-                <a href="{{ route('contact.index') }}"
-                   class="px-6 h-[44px] inline-flex items-center justify-center gap-2 bg-[#D21502] hover:bg-[#b01101] text-white font-poppins font-semibold text-[14px] rounded-lg transition-all duration-200 shadow-sm shrink-0">
-                    <span>Let's Collaborate</span>
-                    <span class="text-[15px]">&rarr;</span>
-                </a>
-            </div>
-
-            <div class="hidden lg:flex lg:w-1/2 justify-end z-20">
-                <img src="{{ asset('storage/images/LogoMrecBig.png') }}"
-                     alt="Logo MREC Big"
-                     class="w-[480px] h-auto object-contain">
-            </div>
-        </div>
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[78px] sm:h-[88px] lg:h-[98px] pointer-events-none overflow-hidden z-40">
-        <img src="{{ asset('storage/images/Gelombang.png') }}"
-             alt="Gelombang"
-             class="w-full h-full object-fill">
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[3px] bg-[#D21502] z-50"></div>
-</section>
+{{-- CTA and wave are rendered once by components.footer in layouts.app. --}}
 
 <!-- JAVASCRIPT LOGIC ACCORDION & AJAX MOVE TO ALUMNI -->
 <script>

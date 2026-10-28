@@ -16,6 +16,9 @@
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('css/page-wipe.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mrec-footer.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/mrec-hero.css') }}">
 
     <!-- Config Font Custom CDN -->
     <script>
@@ -62,8 +65,8 @@
         <div class="flex flex-col items-center bg-transparent p-0 border-0 shadow-none">
             
             <!-- Gambar Card Flow -->
-            <div class="relative w-44 sm:w-52 h-auto mb-2.5 pointer-events-none">
-                <img src="{{ asset('storage/images/cardflow.png') }}" 
+            <div class="relative w-28 sm:w-32 h-auto mb-2.5 pointer-events-none">
+                <img src="{{ asset('images/about/Kartu_Nama_Belakang.png') }}" 
                      alt="MREC Card Flow" 
                      class="w-full h-full object-contain animate-bounce-slow drop-shadow-xl">
             </div>

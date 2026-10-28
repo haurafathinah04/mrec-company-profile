@@ -1,0 +1,86 @@
+/* About-only design system. Other pages and shared footer remain untouched. */
+.mrec-about-page {
+ --about-surface: oklch(0.984 0.002 250); --about-white: oklch(1 0 0);
+ --about-ink: oklch(0.14 0 0); --about-heading: oklch(0.39 0.022 255);
+ --about-copy: oklch(0.49 0.012 255); --about-brand: oklch(0.55 0.22 30);
+ --about-brand-hover: oklch(0.47 0.20 30); --about-grid: oklch(0.93 0.004 250 / .62);
+ --about-soft: oklch(0.96 0.025 25); --about-line: oklch(0.90 0.004 250);
+ --about-start: oklch(0.954 0.004 250); --about-ribbon: oklch(0.46 0.19 28);
+ --about-pattern: oklch(0.72 0.045 20 / .38); --about-video-end: oklch(0.91 0.045 20);
+ --about-shadow: 0 6px 24px oklch(0.25 0 0 / .045);
+ --about-image-shadow: 0 0 28px oklch(0.64 0.09 25 / .20);
+ color: var(--about-copy); font-family: 'Hanken Grotesk', Arial, sans-serif; letter-spacing: 0;
+}
+.mrec-about-page *, .mrec-about-page *::before, .mrec-about-page *::after { box-sizing: border-box; letter-spacing: 0; }
+.mrec-about-page h1, .mrec-about-page h2, .mrec-about-page h3, .mrec-about-page p, .mrec-about-page figure { margin: 0; }
+.mrec-about-container { width: 89%; max-width: 1200px; margin: 0 auto; }
+.mrec-about-grid { background-color: var(--about-surface); background-image: linear-gradient(var(--about-grid) 1px, transparent 1px), linear-gradient(90deg,var(--about-grid) 1px,transparent 1px); background-size: 38px 38px; }
+.mrec-about-intro { min-height: 635px; padding: 120px 0 100px; display: flex; align-items: center; }
+.mrec-about-intro-inner { display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; gap: 90px; }
+.mrec-about-label { color: var(--about-brand); font-size: 14px; font-weight: 700; margin-bottom: 20px !important; }
+.mrec-about-intro h1 { color: var(--about-ink); font: 700 64px/1.15 'Poppins',sans-serif; margin-bottom: 22px; }
+.mrec-about-intro-copy { max-width: 505px; font-size: 16px; line-height: 1.5; }
+.mrec-about-project-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 36px; padding: 12px 29px; border-radius: 999px; background: var(--about-brand); color: var(--about-white); font: 600 12px/1.5 'Poppins',sans-serif; text-decoration: none; transition: background .2s; }
+.mrec-about-project-link:hover { background: var(--about-brand-hover); }
+.mrec-about-project-link:focus-visible { outline: 2px solid var(--about-brand); outline-offset: 4px; }
+.mrec-about-office { width: 100%; height: 410px; object-fit: cover; object-position: 50% 39%; border-radius: 14px; box-shadow: var(--about-image-shadow); }
+/* Our Start: overlapping photo composition matching the supplied reference. */
+.mrec-about-start { position: relative; overflow: hidden; isolation: isolate; width: 100%; padding: 64px 0; background: var(--about-start) url('../images/about/our-start-background.svg') center / cover no-repeat; }
+.mrec-about-start .mrec-about-history { position: relative; aspect-ratio: 1050 / 460; }
+.mrec-about-launch { position: absolute; inset: 0 auto 0 0; width: 44%; min-width: 0; }
+.mrec-about-launch h2 { position: absolute; top: 0; left: 10%; width: 85%; padding: 8px 12px; background: var(--about-ribbon); color: var(--about-white); font: 700 42px/1.15 Arial,sans-serif; text-align: center; box-shadow: var(--about-shadow); }
+.mrec-about-launch::before { content: ''; position: absolute; left: 21%; top: 20%; width: 71%; height: 61%; transform: rotate(3deg); border: 1px solid var(--about-line); background: var(--about-start) url('../images/about/our-start-launch-2023-hd.jpg') center / 92% 78% no-repeat; box-shadow: var(--about-shadow); }
+.mrec-about-launch > img { position: absolute; left: 15%; top: 28.3%; display: block; width: 71%; height: 57%; object-fit: cover; padding: 20px 12px 48px; background: var(--about-start); border: 1px solid var(--about-line); box-shadow: var(--about-shadow); }
+.mrec-about-caption { position: absolute; z-index: 3; background: var(--about-heading); color: var(--about-white); font: 700 15px/1.5 Arial,sans-serif; padding: 8px 16px; text-align: left; }
+.mrec-about-launch figcaption { left: 3.5%; top: 76%; width: 60%; }
+.mrec-about-showcase { position: absolute; left: 46%; top: 0; width: 54%; height: 100%; min-width: 0; }
+.mrec-about-showcase img { position: absolute; display: block; object-fit: cover; min-height: 0; }
+.mrec-about-showcase-group { left: 8%; top: 0; width: 57%; height: 55%; padding: 20px 12px 44px; background: var(--about-start); border: 1px solid var(--about-line); box-shadow: var(--about-shadow); }
+.mrec-about-showcase-meeting { left: 68%; top: 8%; width: 31%; height: 68%; }
+.mrec-about-showcase-demo { left: 13%; top: 38%; width: 57%; height: 55%; padding: 20px 12px 46px; background: var(--about-start); border: 1px solid var(--about-line); box-shadow: var(--about-shadow); z-index: 2; }
+.mrec-about-showcase figcaption { left: -1%; top: 85%; width: 58%; }
+.mrec-about-motif { position: absolute; width: 21.035%; height: auto; object-fit: contain; z-index: -1; pointer-events: none; }
+.mrec-about-motif-top { left: 0; top: 0; } .mrec-about-motif-bottom { right: 0; bottom: 0; }
+@media (max-width: 1000px) { .mrec-about-launch h2 { font-size: 32px; } .mrec-about-caption { font-size: 12px; padding: 7px 10px; } .mrec-about-launch > img, .mrec-about-showcase-group, .mrec-about-showcase-demo { padding: 12px 8px 32px; } }
+@media (max-width: 700px) { .mrec-about-start { padding: 48px 0; } .mrec-about-start .mrec-about-history { aspect-ratio: auto; display: grid; grid-template-columns: minmax(0,1fr); gap: 28px; max-width: 520px; } .mrec-about-launch { position: relative; inset: auto; width: 100%; aspect-ratio: 462 / 460; } .mrec-about-launch h2 { font-size: 28px; } .mrec-about-showcase { position: relative; left: auto; top: auto; width: 100%; height: auto; aspect-ratio: 567 / 460; } .mrec-about-caption { font-size: 12px; } }
+.mrec-about-vision { min-height: 500px; display: flex; align-items: center; justify-content: center; padding: 100px 24px; background: var(--about-white); text-align: center; }
+.mrec-about-vision-inner { max-width: 790px; }
+.mrec-about-vision svg { width: 45px; height: 35px; fill: var(--about-brand); margin: 0 auto 20px; }
+.mrec-about-page h2.mrec-about-heading { color: var(--about-heading); font: 600 46px/1.25 'Poppins',sans-serif; }
+.mrec-about-vision p { margin-top: 24px; font-size: 19px; line-height: 1.5; }
+.mrec-about-mission { padding: 75px 0; }
+.mrec-about-mission .mrec-about-container { width: 94%; }
+.mrec-about-mission-header { display: flex; align-items: center; justify-content: space-between; gap: 50px; margin-bottom: 40px; }
+.mrec-about-mission-header p { width: 445px; font-size: 17px; line-height: 1.5; }
+.mrec-about-mission-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.mrec-about-mission-card { background: var(--about-white); padding: 29px 30px; border-radius: 8px; border: 1px solid var(--about-grid); box-shadow: var(--about-shadow); min-height: 270px; }
+.mrec-about-mission-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--about-brand); background: var(--about-soft); margin-bottom: 21px; font-size: 18px; }
+.mrec-about-mission-card h3 { color: var(--about-heading); font-size: 20px; line-height: 1.3; font-weight: 700; margin-bottom: 14px; }
+.mrec-about-mission-card p { font-size: 16px; line-height: 1.45; }
+.mrec-about-video { text-align: center; padding: 65px 0 75px; background: linear-gradient(135deg,var(--about-start),var(--about-video-end)); }
+.mrec-about-video-subtitle { font-size: 15px; line-height: 1.5; margin: 13px auto 36px !important; }
+.mrec-about-video-frame { width: 92%; max-width: 1080px; aspect-ratio: 16/9; margin: 0 auto; overflow: hidden; border-radius: 16px; background: var(--about-ink); }
+.mrec-about-video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.mrec-about-video-description { max-width: 1030px; margin: 34px auto 0 !important; font-size: 16px; line-height: 1.5; color: var(--about-heading); font-weight: 600; }
+/* The reference has no floating member card; hide it on About only. */
+body:has(.mrec-about-page) #draggableCard { display: none; }
+@media(max-width: 1000px) {
+ .mrec-about-intro-inner { gap: 40px; } .mrec-about-intro h1 { font-size: 54px; }
+ .mrec-about-office { height: 380px; }
+ .mrec-about-mission-card { padding: 24px; } .mrec-about-page h2.mrec-about-heading { font-size: 38px; }
+ .mrec-about-mission-card h3 { font-size: 18px; }
+}
+@media(max-width: 700px) {
+ .mrec-about-container { width: 88%; } .mrec-about-intro { padding: 110px 0 60px; }
+ .mrec-about-intro-inner { grid-template-columns: 1fr; gap: 42px; }
+ .mrec-about-intro h1 { font-size: 48px; } .mrec-about-office { height: 360px; }
+ .mrec-about-vision { min-height: 370px; padding: 70px 24px; } .mrec-about-vision p { font-size: 17px; }
+ .mrec-about-page h2.mrec-about-heading { font-size: 32px; }
+ .mrec-about-mission { padding: 55px 0; } .mrec-about-mission .mrec-about-container { width: 88%; }
+ .mrec-about-mission-header { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 30px; }
+ .mrec-about-mission-header p { width: auto; } .mrec-about-mission-grid { grid-template-columns: 1fr; gap: 18px; }
+ .mrec-about-mission-card { min-height: 0; padding: 28px; } .mrec-about-mission-card h3 { font-size: 20px; }
+ .mrec-about-video { padding: 50px 0; } .mrec-about-video-frame { width: 100%; border-radius: 8px; }
+ .mrec-about-video-subtitle { font-size: 14px; } .mrec-about-video-description { font-size: 14px; }
+}
+@media(prefers-reduced-motion: reduce) { .mrec-about-project-link { transition: none; } }
