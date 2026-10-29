@@ -19,7 +19,6 @@
     <!-- Custom CSS Page Wipe -->
     <link rel="stylesheet" href="{{ asset('css/page-wipe.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mrec-footer.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/mrec-hero.css') }}">
 
     <!-- Config Font Custom CDN -->
@@ -68,15 +67,9 @@
          class="fixed bottom-6 right-6 z-50 touch-none select-none cursor-grab active:cursor-grabbing">
         <div class="flex flex-col items-center bg-transparent p-0 border-0 shadow-none">
             
-<<<<<<< HEAD
-            <!-- Gambar Card Flow (Mengakses public/storage via asset) -->
+            <!-- Gambar Card Flow -->
             <div class="relative w-44 sm:w-52 h-auto mb-2.5 pointer-events-none">
                 <img src="{{ asset('storage/images/cardflow.png') }}" 
-=======
-            <!-- Gambar Card Flow -->
-            <div class="relative w-28 sm:w-32 h-auto mb-2.5 pointer-events-none">
-                <img src="{{ asset('images/about/Kartu_Nama_Belakang.png') }}" 
->>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
                      alt="MREC Card Flow" 
                      class="w-full h-full object-contain animate-bounce-slow drop-shadow-xl">
             </div>

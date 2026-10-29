@@ -4,16 +4,9 @@
 
 <!-- HERO UTAMA -->
 <section class="relative flex min-h-[594px] h-screen max-h-[760px] w-full items-center overflow-hidden bg-white pt-16 font-sora">
-<<<<<<< HEAD
-    {{-- UBAH: Menggunakan LatarBelakang.png --}}
     <img src="{{ asset('storage/images/LatarBelakang.png') }}"
         alt="Interior futuristik Metaverse Research and Experience Center"
         class="absolute inset-0 z-0 h-full w-full object-cover object-center">
-=======
-    <img src="{{ asset('images/HeroHome.jpg') }}"
-         alt="Interior futuristik Metaverse Research and Experience Center"
-         class="absolute inset-0 z-0 h-full w-full object-cover object-center">
->>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
 
     <div class="absolute inset-0 z-10 bg-white/55 pointer-events-none"></div>
 
@@ -70,19 +63,10 @@
             </a>
         </div>
 
-<<<<<<< HEAD
         <div class="relative w-[574px] h-[400px] max-w-full lg:ml-[664px] lg:mr-[42px] lg:absolute rounded-3xl overflow-hidden shadow-lg border border-gray-100 shrink-0 mt-8 lg:mt-0">
             <img src="{{ asset('storage/images/AboutFoto.png') }}"
                 alt="About MREC Photo"
                 class="w-full h-full object-cover">
-=======
-        <!-- Kanan: Gambar berukuran seperti foto pada halaman About -->
-        <div class="relative w-full max-w-[524px] aspect-[524/410] lg:flex-1 lg:min-w-0 lg:ml-auto lg:mr-[74px] rounded-[14px] overflow-hidden shadow-lg border border-gray-100 mt-8 lg:mt-0">
-
-            <img src="{{ asset('images/about/2025-03-18.jpg') }}"
-                 alt="Plakat MREC Telkom University"
-                  class="absolute inset-0 block w-full h-full object-cover object-center" width="750" height="813" loading="lazy">
->>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
 
             <div class="absolute bottom-4 left-6 text-white font-poppins text-sm font-medium drop-shadow-md">
                 Telkom University Affiliated Lab
@@ -274,13 +258,8 @@
                     </p>
                 </div>
             </div>
-<<<<<<< HEAD
-=======
-
         </div>
-
     </div>
-
 </section>
 
 <!-- 5. MEMBER OF MREC -->
@@ -299,87 +278,8 @@
             <img src="{{ asset('images/about/Kartu_Nama_Depan.png') }}"
                  alt="Kartu kontak MREC Telkom University"
                  class="mrec-home-member-card mrec-home-member-card-front" width="340" height="215" loading="lazy">
->>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
         </div>
     </div>
 </section>
-
-<!-- CALL TO ACTION (CTA) -->
-<<<<<<< HEAD
-<section class="relative w-full bg-[#F8F9FA] overflow-hidden min-h-[450px]">
-    <div class="absolute -top-[105px] right-[60px] w-[290px] h-[290px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-10"></div>
-    <div class="absolute -bottom-[125px] -right-[55px] w-[270px] h-[270px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-20"></div>
-    <div class="absolute left-[4%] top-[42px] w-[20px] h-[20px] rotate-45 rounded-[2px] bg-[#D21502]/35 pointer-events-none z-10"></div>
-
-    <div class="absolute left-[11%] top-[45px] w-[32%] rotate-6 origin-left pointer-events-none z-10">
-        <div class="h-[1.5px] w-full bg-[#D21502]/35"></div>
-        <div class="h-[1.5px] w-[82%] mt-[14px] ml-[10%] bg-[#D21502]/35"></div>
-    </div>
-
-    <div class="hidden lg:block absolute left-[512px] right-[724px] top-[298px] bottom-[128px] pointer-events-none opacity-40 z-10">
-        <div class="grid grid-cols-3 gap-[7px]">
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-        </div>
-    </div>
-
-    <div class="relative z-30 w-full min-h-[450px] flex items-center">
-        <div class="w-full lg:w-[572px] lg:ml-[102.08px] pt-[60px] pb-[80px] z-30 flex flex-col items-start">
-            <h2 class="font-poppins font-semibold text-[48px] leading-[1.1] tracking-tight mb-4 text-[#303B4F]">
-                Have an Idea <br>
-                <span class="text-[#D21502]">Worth Exploring?</span>
-            </h2>
-
-            <p class="font-hanken font-normal text-[16px] text-[#3F4A5A] leading-[1.65] max-w-[360px] mb-6">
-                Let's research, experiment, and build the next experience together.
-            </p>
-
-            <a href="{{ route('contact.index') }}"
-                class="w-[197px] h-[44px] inline-flex items-center justify-center gap-2 bg-[#D21502] hover:bg-[#b01101] text-white font-poppins font-semibold text-[14px] rounded-lg transition-all duration-200 shadow-sm shrink-0">
-                <span>Let's Collaborate</span>
-                <span class="text-[15px]">→</span>
-            </a>
-        </div>
-
-        <div class="hidden lg:block absolute left-[596px] right-[640px] top-[224px] bottom-[202px] pointer-events-none opacity-40 z-10">
-            <div class="grid grid-cols-3 gap-[7px]">
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-                <span class="w-[3px] h-[3px] rounded-full bg-[#D21502]"></span>
-            </div>
-        </div>
-
-        <div class="hidden lg:block lg:absolute lg:left-[694.08px] lg:right-[102.08px] lg:top-[126.8px] lg:w-[483.84px] lg:h-[216.41px] z-20">
-            <img src="{{ asset('storage/images/LogoMrecBig.png') }}"
-                alt="Logo MREC Big"
-                class="w-[483.84px] h-[216.41px] object-contain relative z-20">
-        </div>
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[78px] sm:h-[88px] lg:h-[98px] pointer-events-none overflow-hidden z-40">
-        <div class="absolute -bottom-[74px] -left-[4%] h-[115px] w-[110%] -rotate-2 bg-red-300"></div>
-        <div class="absolute -bottom-[82px] -left-[4%] h-[112px] w-[110%] rotate-2 bg-red-400"></div>
-        <div class="absolute -bottom-[92px] -left-[4%] h-[108px] w-[110%] bg-[#D21502]"></div>
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[3px] bg-[#D21502] z-50"></div>
-</section>
-=======
-<!-- ========================================= -->
-{{-- CTA and wave are rendered once by components.footer in layouts.app. --}}
->>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
 
 @endsection

@@ -34,23 +34,18 @@
 <section class="bg-[#F7F9FB]" style="padding-top: 16px; padding-bottom: 64px;">
     <div class="w-full max-w-[1280px] mx-auto px-[48.34px]">
         
-        <!-- Notifikasi Sukses -->
         @if (session('success'))
             <div class="mb-6 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 shadow-sm">
                 {{ session('success') }}
             </div>
         @endif
 
-        <!-- Judul "Latest Stories" di Tengah & Tombol Tambah Blog (Admin) -->
-        <div class="mb-[44px] flex flex-col sm:flex-row items-center justify-center relative">
-            <h2 class="font-poppins font-semibold text-[32px] text-[#2D3748] tracking-tight text-center">
-                Latest Stories
-            </h2>
-
+        <!-- Judul & Tombol Tambah Blog (Admin) - Diberi jarak ke bawah (mt-4 / mt-6) -->
+        <div class="mb-[44px] flex flex-col sm:flex-row items-center justify-center relative mt-4 sm:mt-6">
             @auth
                 <div class="mt-4 sm:mt-0 sm:absolute sm:right-0">
                     <a href="{{ route('blogs.create') }}"
-                       class="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-[#D21502] px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm shadow-[#D21502]/30 transition hover:bg-[#b71102]">
+                       class="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-[#D21502] px-3.5 py-2 text-[12px] font-semibold text-white shadow-sm shadow-[#D21502]/30 transition hover:bg-[#b71102]">
                         <i class="fa-solid fa-plus text-[10px]"></i>
                         Tambah blog
                     </a>
@@ -64,15 +59,11 @@
             @forelse($blogs as $blog)
             
             @auth
-                <!-- ================= TAMPILAN CARD ADMIN (TANPA OVERLAY) ================= -->
+                <!-- TAMPILAN ADMIN -->
                 <article class="w-[374px] h-[354px] bg-white rounded-3xl border-2 border-gray-300 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.08)] flex flex-col relative">
-                    
-                    <!-- Thumbnail dengan jarak bawah 17px -->
                     <div class="w-full h-[225px] bg-gray-100 overflow-hidden shrink-0 mb-[17px]">
                         <img src="{{ asset('storage/' . $blog->url) }}" alt="{{ $blog->judul }}" class="w-full h-full object-cover">
                     </div>
-
-                    <!-- Kotak Teks Bawah Beserta Tombol Edit & Hapus -->
                     <div class="w-[372px] bg-white px-4 flex flex-col justify-between shrink-0 mx-auto pb-3">
                         <div>
                             <div class="flex items-center justify-between text-[12px] font-poppins font-semibold text-[#D21502] uppercase tracking-wider mb-1">
@@ -83,14 +74,10 @@
                                 {{ $blog->judul }}
                             </h2>
                         </div>
-
                         <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-100 mt-2">
-                            <!-- Tombol Edit -->
                             <a href="{{ route('blogs.edit', $blog) }}" class="inline-flex items-center gap-1 bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-semibold px-2.5 py-1 rounded-md transition">
                                 <i class="fa-solid fa-pen-to-square"></i> Edit
                             </a>
-
-                            <!-- Tombol Delete -->
                             <form action="{{ route('blogs.destroy', $blog) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus blog ini?');">
                                 @csrf
                                 @method('DELETE')
@@ -101,17 +88,12 @@
                         </div>
                     </div>
                 </article>
-
             @else
-                <!-- ================= TAMPILAN CARD USER/GUEST (DENGAN HOVER OVERLAY) ================= -->
+                <!-- TAMPILAN USER / GUEST -->
                 <article class="w-[374px] h-[354px] bg-white rounded-3xl border-2 border-gray-300 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.18),0_6px_16px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col relative group">
-                    
-                    <!-- 1. FOTO UTAMA -->
                     <div class="absolute inset-0 w-full h-full bg-gray-100 overflow-hidden z-10">
                         <img src="{{ asset('storage/' . $blog->url) }}" alt="{{ $blog->judul }}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
                     </div>
-
-                    <!-- 2. KOTAK TEKS PUTIH BAWAH (Bergeser ke bawah saat di-hover) -->
                     <div class="w-[372px] h-[112px] bg-white px-4 pt-3 flex flex-col justify-between shrink-0 mx-auto pb-3 mt-[242px] relative z-20 transition-transform duration-500 ease-out group-hover:translate-y-[112px]">
                         <div>
                             <div class="flex items-center justify-between text-[12px] font-poppins font-semibold text-[#D21502] uppercase tracking-wider mb-1">
@@ -123,25 +105,20 @@
                             </h2>
                         </div>
                     </div>
-
-                    <!-- 3. SLIDE TRANSPARAN OVERLAY -->
                     <div class="absolute inset-0 bg-[#384354]/75 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between z-30">
-                        
                         <div class="transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
                             <span class="font-poppins font-semibold text-[12px] text-[#D21502] tracking-wider uppercase block mb-1">
                                 BLOG • {{ $blog->created_at->format('d M Y') }}
                             </span>
-                            <h3 class="font-poppins font-bold text-[20px] text-white leading-snug mb-3 line-clamp-2">
+                            <h3 class="font-poppins font-bold text-[20px] text-white leading-snug mb-2 line-clamp-2">
                                 {{ $blog->judul }}
                             </h3>
-                            <p class="font-hanken text-gray-200 text-[14px] leading-relaxed line-clamp-3">
-                                {{ $blog->deskripsi }}
+                            <p class="font-hanken text-gray-200 text-[13px] leading-relaxed line-clamp-3">
+                                {{ $blog->highlight ?? $blog->deskripsi }}
                             </p>
                         </div>
-
-                        <!-- Tombol Read More -->
                         <div class="flex justify-center">
-                            <a href="{{ route('blogs.show', $blog->id) }}" target="_blank" class="w-[324px] h-[46px] rounded-full border-2 border-white text-white font-poppins font-semibold text-[14px] inline-flex items-center justify-center gap-2 transition-all duration-200 hover:bg-white hover:text-[#384354]">
+                            <a href="{{ route('blogs.show', $blog->id) }}" class="w-[324px] h-[46px] rounded-full border-2 border-white text-white font-poppins font-semibold text-[14px] inline-flex items-center justify-center gap-2 transition-all duration-200 hover:bg-white hover:text-[#384354]">
                                 Read more <i class="fa-solid fa-arrow-right text-[12px]"></i>
                             </a>
                         </div>
@@ -186,9 +163,4 @@
 
     </div>
 </section>
-
-<!-- ========================================= -->
-<!-- 3. CALL TO ACTION (CTA) -->
-<!-- ========================================= -->
-{{-- CTA and wave are rendered once by components.footer in layouts.app. --}}
 @endsection

@@ -83,17 +83,6 @@
             </div>
         </div>
     </section>
-
-    <section class="mrec-about-video" aria-labelledby="mrec-about-video-title">
-        <div class="mrec-about-container">
-            <h2 id="mrec-about-video-title" class="mrec-about-heading">MREC Video Profile</h2>
-            <p class="mrec-about-video-subtitle">Discover our journey, research breakthroughs, &amp; how we empower innovation through spatial computing and immersive technology at Telkom University.</p>
-            <div class="mrec-about-video-frame">
-                <iframe src="https://drive.google.com/file/d/1rp5EgWFC41NB-eZCHk6WXBYTWv9GuM17/preview" title="MREC Video Profile" allow="autoplay; fullscreen; encrypted-media" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            </div>
-            <p class="mrec-about-video-description">MREC aims to become a center of excellence in research and experience related to the metaverse. Embracing a blend of virtual reality and the real world, this research center will be a forum for students, researchers, practitioners, and related industry collaborations to explore, analyze, and develop metaverse-related technologies and applications. MREC is supported by Kominfo, where Telkom University was appointed as the host. Launching on March 1, 2023 at MWC Barcelona.</p>
-        </div>
-    </section>
 </div>
 {{-- The existing collaboration section and footer remain in layouts.app. --}}
 @endsection

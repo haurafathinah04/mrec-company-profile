@@ -49,13 +49,7 @@
 
                 <div class="mb-8 border-b border-gray-100 pb-6">
                     <p class="font-poppins text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Blog details</p>
-                    @if (session('success'))
-                    <div class="mt-8 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-left text-sm text-green-700">
-                        {{ session('success') }}
-                    </div>
-                    @else
                     <p class="mt-2 text-sm text-gray-500">Fields marked with <span class="text-[#D21502]">*</span> are required.</p>
-                    @endif
                 </div>
 
                 <div class="space-y-6">
@@ -68,11 +62,20 @@
                         @enderror
                     </div>
 
-                    <!-- Link / URL Tujuan -->
+                    <!-- Highlight (Ringkasan Singkat) -->
                     <div>
-                        <label for="link" class="mb-2 block text-sm font-semibold text-gray-700">Link / URL Tujuan <span class="text-[#D21502]">*</span></label>
-                        <input type="url" id="link" name="link" value="{{ old('link', $blog?->link) }}" placeholder="e.g. https://medium.com/@mrec/artikel-anda" class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('link') border-red-500 @else border-gray-200 @enderror" required>
-                        @error('link')
+                        <label for="highlight" class="mb-2 block text-sm font-semibold text-gray-700">Highlight / Ringkasan Singkat <span class="text-[#D21502]">*</span></label>
+                        <input type="text" id="highlight" name="highlight" value="{{ old('highlight', $blog?->highlight) }}" placeholder="e.g. Ringkasan singkat artikel untuk preview card" class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('highlight') border-red-500 @else border-gray-200 @enderror" required>
+                        @error('highlight')
+                        <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Isi Lengkap Blog -->
+                    <div>
+                        <label for="isi" class="mb-2 block text-sm font-semibold text-gray-700">Isi / Konten Blog <span class="text-[#D21502]">*</span></label>
+                        <textarea id="isi" name="isi" rows="6" placeholder="Tuliskan isi artikel secara lengkap di sini..." class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('isi') border-red-500 @else border-gray-200 @enderror" required>{{ old('isi', $blog?->isi) }}</textarea>
+                        @error('isi')
                         <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -88,15 +91,6 @@
                             <img src="{{ asset('storage/' . $blog->url) }}" alt="{{ $blog->judul }}" class="mt-4 h-32 w-full rounded-xl object-cover">
                         @endif
                         @error('gambar')
-                        <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Deskripsi Blog -->
-                    <div>
-                        <label for="deskripsi" class="mb-2 block text-sm font-semibold text-gray-700">Deskripsi singkat <span class="text-[#D21502]">*</span></label>
-                        <textarea id="deskripsi" name="deskripsi" rows="3" placeholder="Tuliskan ringkasan artikel..." class="w-full rounded-xl border bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D21502] focus:bg-white focus:ring-4 focus:ring-[#D21502]/10 @error('deskripsi') border-red-500 @else border-gray-200 @enderror" required>{{ old('deskripsi', $blog?->deskripsi) }}</textarea>
-                        @error('deskripsi')
                         <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
                         @enderror
                     </div>

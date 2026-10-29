@@ -133,9 +133,9 @@
             <!-- Tangkapan layar website MREC untuk layanan Web/Mobile -->
             <div class="lg:col-span-6 order-1 lg:order-2">
                 <div class="relative w-full h-[280px] sm:h-[320px] lg:h-full lg:min-h-[320px] rounded-2xl overflow-hidden bg-gray-100 shadow-md border border-gray-200/80">
-                    <img src="{{ asset('images/services/web-mobile-development.png') }}"
-                         alt="Tampilan website MREC sebagai contoh pengembangan aplikasi web dan mobile"
-                         class="absolute inset-0 block w-full h-full object-fill" width="1350" height="594" loading="lazy">
+                <img src="{{ asset('storage/images/Website.jpg') }}"
+                    alt="Tampilan website MREC sebagai contoh pengembangan aplikasi web dan mobile"
+                    class="absolute inset-0 block w-full h-full object-cover object-[35%_center]" width="1350" height="594" loading="lazy">
                 </div>
             </div>
         </div>

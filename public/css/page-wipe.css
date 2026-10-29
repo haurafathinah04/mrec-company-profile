@@ -17,7 +17,7 @@
     pointer-events: auto;
 }
 
-/* 1. BACKGROUND PANEL (LIGHT FUTURISTIC CYBER) */
+/* 1. BACKGROUND PANEL (FUTURISTIC LIGHT CYBER & GLOW) */
 #pageWipe .panel {
     position: absolute;
     top: -2%;
@@ -25,38 +25,39 @@
     width: 100%;
     height: 104%;
     background: 
-        radial-gradient(circle at 50% 50%, rgba(210, 21, 2, 0.15) 0%, transparent 65%),
-        linear-gradient(135deg, #ffffff 0%, #f4f6f9 50%, #e2e7ef 100%);
+        radial-gradient(circle at 50% 50%, rgba(210, 21, 2, 0.18) 0%, transparent 70%),
+        linear-gradient(135deg, #ffffff 0%, #f1f4f9 50%, #dbe3ef 100%);
     transform: translate3d(0, 102%, 0);
-    transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
-    box-shadow: 0 -25px 80px rgba(0, 0, 0, 0.18);
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: 0 -30px 90px rgba(210, 21, 2, 0.2);
     will-change: transform;
 }
 
-/* POLA GRID SPATIAL COMPUTING */
+/* POLA GRID SPATIAL COMPUTING DENGAN EFEK SHIMMER */
 #pageWipe .panel::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-    background-size: 36px 36px;
-    opacity: 0.85;
+        linear-gradient(to right, rgba(210, 21, 2, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(210, 21, 2, 0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.9;
     pointer-events: none;
 }
 
-/* GARIS ATAS LINELIGHT */
+/* GARIS ATAS LINELIGHT DENGAN ANIMASI PULSE */
 #pageWipe .panel::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 20px;
-    background: url("../storage/images/LineLight.png") repeat-x center/contain;
-    filter: drop-shadow(0 4px 8px rgba(210, 21, 2, 0.35));
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #D21502, #ff4d4d, #D21502, transparent);
+    box-shadow: 0 0 20px rgba(210, 21, 2, 0.8), 0 0 40px rgba(210, 21, 2, 0.4);
     z-index: 5;
+    animation: lineGlow 2s ease-in-out infinite;
 }
 
 #pageWipe.cover .panel {
@@ -65,20 +66,21 @@
 
 #pageWipe.leave .panel {
     transform: translate3d(0, -102%, 0);
+    transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-/* 2. HUD RING ORBIT DENGAN BATIK MREC */
+/* 2. HUD RING ORBIT FUTURISTIK */
 #pageWipe .ring {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: min(530px, 88vw);
-    height: min(530px, 88vw);
-    transform: translate3d(-50%, -50%, 0) scale(0.6) rotate(0deg);
+    width: min(560px, 90vw);
+    height: min(560px, 90vw);
+    transform: translate3d(-50%, -50%, 0) scale(0.5) rotate(0deg);
     border-radius: 50%;
-    border: 2px dashed rgba(210, 21, 2, 0.4);
-    background: radial-gradient(circle, rgba(210, 21, 2, 0.06) 0%, transparent 70%);
-    box-shadow: 0 0 35px rgba(210, 21, 2, 0.15);
+    border: 2px dashed rgba(210, 21, 2, 0.5);
+    background: radial-gradient(circle, rgba(210, 21, 2, 0.08) 0%, transparent 75%);
+    box-shadow: 0 0 50px rgba(210, 21, 2, 0.25), inset 0 0 30px rgba(210, 21, 2, 0.15);
     opacity: 0;
     transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
     z-index: 1;
@@ -88,26 +90,26 @@
 #pageWipe.cover .ring {
     opacity: 1;
     transform: translate3d(-50%, -50%, 0) scale(1) rotate(180deg);
-    animation: orbitRotate 14s linear infinite;
+    animation: orbitRotate 16s linear infinite, ringPulse 3s ease-in-out infinite alternate;
 }
 
 #pageWipe.leave .ring {
     opacity: 0;
-    transform: translate3d(-50%, -50%, 0) scale(1.2) rotate(360deg);
+    transform: translate3d(-50%, -50%, 0) scale(1.3) rotate(360deg);
 }
 
-/* 3. LOGO MREC BIG + WATERMARK BATIK */
+/* 3. LOGO MREC + WATERMARK BATIK DINAMIS */
 #pageWipe .mark {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: min(450px, 84vw);
+    width: min(420px, 80vw);
     aspect-ratio: 1350/608;
-    transform: translate3d(-50%, -50%, 0) scale(0.8);
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
     background: url("../storage/images/LogoMrecBig.png") center/contain no-repeat;
     opacity: 0;
-    filter: drop-shadow(0 15px 32px rgba(210, 21, 2, 0.35));
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, opacity 0.5s ease 0.15s;
+    filter: drop-shadow(0 20px 40px rgba(210, 21, 2, 0.4));
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.5s ease 0.1s;
     z-index: 3;
     will-change: transform, opacity;
 }
@@ -117,42 +119,54 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 330px;
-    height: 330px;
-    transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(-45deg);
+    width: 350px;
+    height: 350px;
+    transform: translate3d(-50%, -50%, 0) scale(0.7) rotate(-60deg);
     background: url("../storage/images/Batik1Light.png") center/contain no-repeat;
-    opacity: 0.35;
+    opacity: 0.25;
     z-index: -1;
     pointer-events: none;
-    transition: transform 1s ease-out;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #pageWipe.cover .mark {
     opacity: 1;
     transform: translate3d(-50%, -50%, 0) scale(1);
-    animation: logoFloat 2.8s ease-in-out infinite alternate;
+    animation: logoFloat 3s ease-in-out infinite alternate;
 }
 
 #pageWipe.cover .mark::before {
-    transform: translate3d(-50%, -50%, 0) scale(1.1) rotate(0deg);
+    transform: translate3d(-50%, -50%, 0) scale(1.15) rotate(0deg);
+    animation: batikSpin 20s linear infinite;
 }
 
 #pageWipe.leave .mark {
     opacity: 0;
-    transform: translate3d(-50%, -50%, 0) scale(1.15);
+    transform: translate3d(-50%, -50%, 0) scale(1.2);
 }
 
-/* KEYFRAMES ANIMASI GPU ACCELERATED */
+/* KEYFRAMES ANIMASI BARU YANG LEBIH HIDUP */
 @keyframes orbitRotate {
     0% { transform: translate3d(-50%, -50%, 0) rotate(0deg); }
     100% { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
 }
 
+@keyframes batikSpin {
+    0% { transform: translate3d(-50%, -50%, 0) scale(1.15) rotate(0deg); }
+    100% { transform: translate3d(-50%, -50%, 0) scale(1.15) rotate(360deg); }
+}
+
+@keyframes ringPulse {
+    0% { box-shadow: 0 0 30px rgba(210, 21, 2, 0.2), inset 0 0 20px rgba(210, 21, 2, 0.1); }
+    100% { box-shadow: 0 0 65px rgba(210, 21, 2, 0.45), inset 0 0 40px rgba(210, 21, 2, 0.3); }
+}
+
 @keyframes logoFloat {
-    0% {
-        transform: translate3d(-50%, -50%, 0) translateY(0px) scale(1);
-    }
-    100% {
-        transform: translate3d(-50%, -50%, 0) translateY(-10px) scale(1.03);
-    }
+    0% { transform: translate3d(-50%, -50%, 0) translateY(0px) scale(1); }
+    100% { transform: translate3d(-50%, -50%, 0) translateY(-12px) scale(1.04); }
+}
+
+@keyframes lineGlow {
+    0%, 100% { opacity: 0.6; filter: brightness(1); }
+    50% { opacity: 1; filter: brightness(1.4); }
 }

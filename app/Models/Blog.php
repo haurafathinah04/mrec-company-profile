@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['judul', 'url', 'deskripsi', 'link'])]
 class Blog extends Model
 {
+    protected $fillable = [
+        'judul',
+        'highlight',
+        'isi',
+        'url',
+        'link', // Opsional jika masih ingin dipakai untuk redirect eksternal
+    ];
 }
