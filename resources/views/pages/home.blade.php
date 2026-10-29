@@ -4,10 +4,16 @@
 
 <!-- HERO UTAMA -->
 <section class="relative flex min-h-[594px] h-screen max-h-[760px] w-full items-center overflow-hidden bg-white pt-16 font-sora">
+<<<<<<< HEAD
     {{-- UBAH: Menggunakan LatarBelakang.png --}}
     <img src="{{ asset('storage/images/LatarBelakang.png') }}"
         alt="Interior futuristik Metaverse Research and Experience Center"
         class="absolute inset-0 z-0 h-full w-full object-cover object-center">
+=======
+    <img src="{{ asset('images/HeroHome.jpg') }}"
+         alt="Interior futuristik Metaverse Research and Experience Center"
+         class="absolute inset-0 z-0 h-full w-full object-cover object-center">
+>>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
 
     <div class="absolute inset-0 z-10 bg-white/55 pointer-events-none"></div>
 
@@ -64,10 +70,19 @@
             </a>
         </div>
 
+<<<<<<< HEAD
         <div class="relative w-[574px] h-[400px] max-w-full lg:ml-[664px] lg:mr-[42px] lg:absolute rounded-3xl overflow-hidden shadow-lg border border-gray-100 shrink-0 mt-8 lg:mt-0">
             <img src="{{ asset('storage/images/AboutFoto.png') }}"
                 alt="About MREC Photo"
                 class="w-full h-full object-cover">
+=======
+        <!-- Kanan: Gambar berukuran seperti foto pada halaman About -->
+        <div class="relative w-full max-w-[524px] aspect-[524/410] lg:flex-1 lg:min-w-0 lg:ml-auto lg:mr-[74px] rounded-[14px] overflow-hidden shadow-lg border border-gray-100 mt-8 lg:mt-0">
+
+            <img src="{{ asset('images/about/2025-03-18.jpg') }}"
+                 alt="Plakat MREC Telkom University"
+                  class="absolute inset-0 block w-full h-full object-cover object-center" width="750" height="813" loading="lazy">
+>>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
 
             <div class="absolute bottom-4 left-6 text-white font-poppins text-sm font-medium drop-shadow-md">
                 Telkom University Affiliated Lab
@@ -106,7 +121,7 @@
                     </p>
                 </div>
 
-                <a href="/services" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
+                <a href="/services#vr-ar" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
                     Learn More →
                 </a>
             </div>
@@ -126,7 +141,7 @@
                     </p>
                 </div>
 
-                <a href="/services" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
+                <a href="/services#game" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
                     Learn More →
                 </a>
             </div>
@@ -146,7 +161,7 @@
                     </p>
                 </div>
 
-                <a href="/services" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
+                <a href="/services#3d-design" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
                     Learn More →
                 </a>
             </div>
@@ -166,7 +181,7 @@
                     </p>
                 </div>
 
-                <a href="/services" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
+                <a href="/services#web-mobile" class="font-poppins font-semibold text-[14px] text-[#D21502] hover:underline inline-flex items-center gap-1">
                     Learn More →
                 </a>
             </div>
@@ -259,11 +274,38 @@
                     </p>
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 5. MEMBER OF MREC -->
+<link rel="stylesheet" href="{{ asset('css/mrec-home-balance.css') }}">
+<section class="mrec-home-member" aria-labelledby="mrec-home-member-title">
+    <div class="mrec-home-member-inner">
+        <div class="mrec-home-member-copy">
+            <h2 id="mrec-home-member-title">Member of MREC?</h2>
+            <p>Scan your ID card here ↓</p>
+            <a href="{{ route('contact.index') }}" class="mrec-home-member-link">Go to website</a>
+        </div>
+        <div class="mrec-home-member-cards" aria-label="MREC membership cards">
+            <img src="{{ asset('images/about/Kartu_Nama_Belakang.png') }}"
+                 alt="Kartu MREC Irham Mulkan"
+                 class="mrec-home-member-card mrec-home-member-card-back" width="340" height="215" loading="lazy">
+            <img src="{{ asset('images/about/Kartu_Nama_Depan.png') }}"
+                 alt="Kartu kontak MREC Telkom University"
+                 class="mrec-home-member-card mrec-home-member-card-front" width="340" height="215" loading="lazy">
+>>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
         </div>
     </div>
 </section>
 
 <!-- CALL TO ACTION (CTA) -->
+<<<<<<< HEAD
 <section class="relative w-full bg-[#F8F9FA] overflow-hidden min-h-[450px]">
     <div class="absolute -top-[105px] right-[60px] w-[290px] h-[290px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-10"></div>
     <div class="absolute -bottom-[125px] -right-[55px] w-[270px] h-[270px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-20"></div>
@@ -335,5 +377,9 @@
 
     <div class="absolute bottom-0 left-0 w-full h-[3px] bg-[#D21502] z-50"></div>
 </section>
+=======
+<!-- ========================================= -->
+{{-- CTA and wave are rendered once by components.footer in layouts.app. --}}
+>>>>>>> 87176c9f4534a6ec872f3a63b03fad61658d263b
 
 @endsection

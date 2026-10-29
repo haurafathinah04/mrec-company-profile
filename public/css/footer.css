@@ -1,0 +1,8 @@
+/* Footer shared by every page */
+footer { background: #fff; }
+footer > div:first-child { max-width: 1320px; margin-inline: auto; }
+footer > div:last-child { padding-top: 18px; }
+footer a:focus-visible { outline: 2px solid #c9160b; outline-offset: 3px; }
+@media (max-width: 767px) {
+  footer > div:first-child { gap: 30px; padding-bottom: 36px; }
+}

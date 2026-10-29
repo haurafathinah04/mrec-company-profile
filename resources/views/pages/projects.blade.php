@@ -10,7 +10,7 @@
     <div class="relative w-full max-w-[1280px] h-[274px] mx-auto overflow-hidden">
         
         <!-- Gambar Latar Belakang -->
-        <img src="{{ asset('storage/images/LatarBelakang.png') }}" 
+        <img src="{{ asset('images/LatarBelakang.png') }}"
              alt="Latar Belakang Hero" 
              class="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none z-0">
 
@@ -29,7 +29,7 @@
 
         <!-- Sisi Kanan: Foto ProjectHero.png -->
         <div class="hidden lg:block absolute z-30 pointer-events-none right-[55px] bottom-0">
-            <img src="{{ asset('storage/images/ProjectHero.png') }}" 
+            <img src="{{ asset('images/projects/ProjectHero.png') }}" 
                  alt="Project Hero (HP & Laptop)" 
                  class="w-[495px] h-[204.63px] object-contain object-bottom drop-shadow-xl block">
         </div>

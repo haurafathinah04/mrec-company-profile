@@ -1,0 +1,52 @@
+:root { --mrec-hero-brand: #d81808; --mrec-hero-brand-hover: #b9160c; --mrec-hero-ink: #344054; --mrec-hero-surface: #ffffff; --mrec-hero-wash: rgb(255 255 255 / 55%); }
+.mrec-about-hero { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 594px; padding: 130px 62px 80px; overflow: hidden; background: var(--mrec-hero-surface); }
+.mrec-about-hero * { box-sizing: border-box; letter-spacing: 0; }
+.mrec-about-background, .mrec-about-overlay { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.mrec-about-background { object-fit: cover; object-position: center; }
+.mrec-about-overlay { z-index: -1; background: var(--mrec-hero-wash); }
+.mrec-about-content { width: 100%; max-width: 850px; }
+.mrec-about-eyebrow { margin: 0 0 18px; color: var(--mrec-hero-brand); font: 600 16px/1.5 'Poppins', sans-serif; }
+.mrec-about-hero h1 { margin: 0 0 30px; color: var(--mrec-hero-brand); font: 700 65px/1.2 'Sora', sans-serif; }
+.mrec-about-description { max-width: 720px; margin: 0; color: var(--mrec-hero-ink); font: 400 16px/1.5 'Hanken Grotesk', sans-serif; }
+.mrec-about-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 44px; }
+.mrec-about-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 12px 30px; border: 1px solid var(--mrec-hero-brand); border-radius: 999px; text-decoration: none; font: 600 14px/1.5 'Poppins', sans-serif; transition: background .2s, color .2s; }
+.mrec-about-primary { background: var(--mrec-hero-brand); color: var(--mrec-hero-surface); }
+.mrec-about-primary:hover { background: var(--mrec-hero-brand-hover); }
+.mrec-about-actions .mrec-about-secondary { border-color: var(--mrec-hero-ink); color: var(--mrec-hero-ink); }
+.mrec-about-secondary:hover { background: var(--mrec-hero-ink); color: var(--mrec-hero-surface); }
+.mrec-about-actions a:focus-visible { outline: 2px solid var(--mrec-hero-brand); outline-offset: 4px; }
+@media (max-width: 767px) { .mrec-about-hero { min-height: 594px; padding: 120px 24px 64px; } .mrec-about-hero h1 { font-size: 42px; } .mrec-about-background { object-position: 62% center; } .mrec-about-actions { margin-top: 32px; } }
+@media (prefers-reduced-motion: reduce) { .mrec-about-actions a { transition: none; } }
+
+/* Blog banner only; all media are bundled and do not require storage:link. */
+.mrec-blog-hero { padding-top: 80px; overflow: hidden; background: var(--mrec-hero-surface); }
+.mrec-blog-banner { box-sizing: border-box; position: relative; isolation: isolate; width: 100%; height: 269px; overflow: hidden; display: flex; align-items: center; }
+.mrec-blog-banner * { box-sizing: border-box; }
+.mrec-blog-background { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; z-index: -1; }
+.mrec-blog-copy { position: relative; z-index: 1; margin-left: max(24px, calc((100% - 1277px) / 2 + 65px)); padding-right: 24px; }
+.mrec-blog-eyebrow { margin: 0 0 2px; font: 700 12px/1.5 'Poppins', sans-serif; letter-spacing: .28em; color: var(--mrec-hero-brand); }
+.mrec-blog-copy h1 { margin: 0 0 10px; font: 700 64px/1 'Sora', sans-serif; color: var(--mrec-hero-brand); letter-spacing: 0; }
+.mrec-blog-description { max-width: 480px; margin: 0; font: 400 16px/1.5 'Hanken Grotesk', sans-serif; color: var(--mrec-hero-ink); letter-spacing: 0; }
+.mrec-blog-photo { position: absolute; top: 16px; right: max(24px, calc((100% - 1277px) / 2 + 79px)); width: min(442px, calc(100% - 550px)); height: 240px; isolation: isolate; --mrec-blog-frame-surface: oklch(0.96 0 0); --mrec-blog-frame-radius: 10px; }
+/* Overlapping photo frames: skew the frame, not the people or bicycle. */
+.mrec-blog-frame { position: absolute; overflow: hidden; border-radius: var(--mrec-blog-frame-radius); transform: skewX(-16deg); background: var(--mrec-blog-frame-surface); }
+.mrec-blog-frame img { display: block; width: 120%; max-width: none; height: 100%; margin-left: -10%; object-fit: cover; transform: skewX(16deg); }
+.mrec-blog-frame--laptop { left: 9%; top: 5%; width: 52%; height: 66%; z-index: 1; }
+/* Match the reference stack: laptop at the back, bicycle lower-right, group in front. */
+.mrec-blog-frame--bicycle { left: 32%; top: 30%; width: 57%; height: 67%; z-index: 2; background: transparent; }
+.mrec-blog-frame--bicycle img { width: 120%; margin-left: -10%; object-fit: cover; object-position: center; }
+.mrec-blog-frame--group { left: 16%; top: 12.5%; width: 62%; height: 76%; z-index: 3; }
+.mrec-blog-frame--group img { object-position: 50% center; }
+@media (max-width: 1000px) and (min-width: 701px) {
+    .mrec-blog-copy { margin-left: 32px; max-width: 52%; }
+    .mrec-blog-copy h1 { font-size: 52px; }
+    .mrec-blog-photo { right: 24px; width: calc(48% - 48px); }
+}
+@media (max-width: 700px) {
+    .mrec-blog-banner { height: auto; min-height: 432px; display: flex; flex-direction: column; align-items: stretch; padding: 32px 24px 16px; gap: 24px; }
+    .mrec-blog-copy { margin: 0; padding: 0; }
+    .mrec-blog-copy h1 { font-size: 44px; }
+    .mrec-blog-description { font-size: 15px; }
+    .mrec-blog-photo { position: relative; top: auto; right: auto; align-self: flex-end; width: min(100%, 398px); height: auto; aspect-ratio: 368 / 200; }
+    .mrec-blog-background { object-fit: cover; object-position: 70% center; }
+}

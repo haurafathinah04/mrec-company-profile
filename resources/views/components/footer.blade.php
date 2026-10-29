@@ -1,73 +1,57 @@
-<footer class="bg-white text-gray-700 font-hanken pt-14 pb-8 border-t border-gray-200/60">
-    <div class="w-full px-10 sm:px-16 lg:px-24 grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-gray-200/60">
-
-        <!-- KOLOM 1: LOGO MREC BIG (W: 156px, H: 68px) & DESKRIPSI -->
-        <div class="md:col-span-5 space-y-4">
-            <div class="space-y-3 -mt-3">
-                <a href="{{ url('/') }}" class="inline-block">
-                    <img src="{{ asset('storage/images/LogoMrecBig.png') }}" 
-                         alt="Logo MREC Big" 
-                         class="w-[156px] h-[68px] object-contain">
-                </a>
-                
-                <!-- GARIS DEKORATIF DI BAWAH LOGO (Dibuat Ekstra Panjang w-[280px] sm:w-[320px]) -->
-                <div class="w-[280px] sm:w-[320px] h-[1.5px] bg-gradient-to-r from-[#D21502] via-[#D21502]/60 via-50% to-transparent rounded-full"></div>
+{{-- One shared CTA + footer for every page using layouts.app; no missing storage image. --}}
+<footer class="mrec-site-footer{{ request()->routeIs('home') ? ' mrec-home-footer' : '' }}" aria-label="MREC footer">
+    <section class="mrec-footer-cta" aria-labelledby="mrec-footer-cta-title">
+        <div class="mrec-footer-circle" aria-hidden="true"></div>
+        <div class="mrec-footer-circle mrec-footer-circle-small" aria-hidden="true"></div>
+        <div class="mrec-footer-lines" aria-hidden="true"></div>
+        <div class="mrec-footer-diamond" aria-hidden="true"></div>
+        <div class="mrec-footer-dots" aria-hidden="true">@for ($dot = 0; $dot < 9; $dot++)<span></span>@endfor</div>
+        <div class="mrec-footer-dots mrec-footer-dots-second" aria-hidden="true">@for ($dot = 0; $dot < 9; $dot++)<span></span>@endfor</div>
+        <div class="mrec-footer-inner mrec-footer-cta-content">
+            <div>
+                <h2 id="mrec-footer-cta-title">Have an Idea<br><span>Worth Exploring?</span></h2>
+                <p>Let's research, experiment, and build the next experience together.</p>
+                <a class="mrec-footer-collaborate" href="{{ route('contact.index') }}">Let's Collaborate <span aria-hidden="true">→</span></a>
             </div>
-
-            <p class="text-sm sm:text-base leading-relaxed max-w-md text-gray-600">
-                Metaverse Research and Experience Center (MREC) at Telkom University is a Center of Excellence dedicated to advancing innovation, research, and experiential learning in immersive technologies.
-            </p>
-
-            <!-- SOCIAL MEDIA -->
-            <div class="flex gap-4 pt-2">
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-800 hover:bg-[#D21502] hover:text-white transition shadow-sm"><i class="fa-brands fa-instagram text-base"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-800 hover:bg-[#D21502] hover:text-white transition shadow-sm"><i class="fa-brands fa-youtube text-base"></i></a>
+            <a href="{{ route('home') }}" aria-label="MREC Home"><img class="mrec-footer-cta-logo" src="{{ asset('images/509d17f950.png') }}" alt="MREC — Metaverse Research & Experience Center" width="1605" height="732"></a>
+        </div>
+        {{-- Inline paths make the wave available on every route, without storage:link. --}}
+        <svg class="mrec-footer-wave" viewBox="0 0 1162 85" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path class="mrec-footer-wave-back" d="M0 0 C175 33 252 45 384 38 C620 26 775 33 946 60 C1041 72 1113 79 1162 84 L1162 85 L0 85 Z"/>
+            <path class="mrec-footer-wave-middle" d="M0 35 C122 40 216 67 321 85 L803 85 C914 53 1018 23 1162 16 L1162 85 L0 85 Z"/>
+            <path class="mrec-footer-wave-front" d="M0 37 C126 39 216 67 321 85 L0 85 Z M804 85 C902 57 1028 60 1162 85 Z"/>
+        </svg>
+    </section>
+    <div class="mrec-footer-inner mrec-footer-columns">
+        <div class="mrec-footer-brand">
+            <a href="{{ route('home') }}" aria-label="MREC Home"><img class="mrec-footer-brand-logo" src="{{ asset('images/509d17f950.png') }}" alt="MREC" width="1605" height="732" loading="lazy"></a>
+            <div class="mrec-footer-rule" aria-hidden="true"></div>
+            <p>MREC (Metaverse Research and Experience Center) is a Center of Excellence at Telkom University, focusing on research and the development of metaverse and virtual reality technologies.</p>
+            <div class="mrec-footer-social">
+                <a href="https://instagram.com/mrec.telu" target="_blank" rel="noopener noreferrer" aria-label="MREC Instagram" title="MREC Instagram"><svg class="mrec-footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></a>
+                <a href="{{ config('mrec.footer.youtube_url') }}" target="_blank" rel="noopener noreferrer" aria-label="MREC on YouTube" title="MREC on YouTube"><svg class="mrec-footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></svg></a>
             </div>
         </div>
-
-        <!-- KOLOM 2: EXPLORE MENU -->
-        <div class="md:col-span-3 space-y-4 pt-2">
-            <div class="space-y-2">
-                <h4 class="text-[#D21502] font-bold font-poppins text-base sm:text-lg">Explore</h4>
-                <div class="w-16 h-[1.5px] bg-gradient-to-r from-[#D21502] to-transparent rounded-full"></div>
-            </div>
-
-            <ul class="space-y-3 text-sm sm:text-base font-medium pt-1">
-                <li><a href="{{ url('/') }}" class="hover:text-[#D21502] transition">Home</a></li>
-                <li><a href="{{ url('/about') }}" class="hover:text-[#D21502] transition">About</a></li>
-                <li><a href="{{ url('/services') }}" class="hover:text-[#D21502] transition">Services</a></li>
-                <li><a href="{{ url('/projects') }}" class="hover:text-[#D21502] transition">Projects</a></li>
-                <li><a href="{{ url('/our-members') }}" class="hover:text-[#D21502] transition">Our Members</a></li>
+        <nav class="mrec-footer-column" aria-label="Footer navigation">
+            <h3>Explore</h3>
+            <ul class="mrec-footer-nav">
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ route('services') }}">Services</a></li>
+                <li><a href="{{ route('projects.index') }}">Projects</a></li>
+                <li><a href="{{ route('blog') }}">Blog</a></li>
+                <li><a href="{{ route('our-members') }}">Our Members</a></li>
             </ul>
+        </nav>
+        <div class="mrec-footer-column mrec-footer-contact-column" id="contact">
+            <h3>Contact Info</h3>
+            <address class="mrec-footer-contact">
+                <a href="https://www.google.com/maps?q=GSG+Telkom+University,+Jl.+Telekomunikasi+No.1,+Bandung" target="_blank" rel="noopener noreferrer"><svg class="mrec-footer-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="mrec-footer-contact-text">GSG, Jl. Telekomunikasi No.1 Lt. 2, Sukapura, Dayeuhkolot, Bandung Regency, West Java 40257</span></a>
+                <a href="tel:+628111434331"><svg class="mrec-footer-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 3 4 4-2 3c2 3 3 4 6 6l3-2 4 4c-1 3-3 4-6 3C8 19 5 16 3 9 2 6 3 4 6 3Z"/></svg><span class="mrec-footer-contact-text mrec-footer-contact-underlined">+62 811-1434-331</span></a>
+                <a href="mailto:mrec.telu@gmail.com"><svg class="mrec-footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 5 9 8 9-8"/></svg><span class="mrec-footer-contact-text mrec-footer-contact-underlined">mrec.telu@gmail.com</span></a>
+                <a href="https://mrec.center.telkomuniversity.ac.id" target="_blank" rel="noopener noreferrer"><svg class="mrec-footer-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/></svg><span class="mrec-footer-contact-text mrec-footer-contact-underlined">mrec.center.telkomuniversity.ac.id</span></a>
+            </address>
         </div>
-
-        <!-- KOLOM 3: CONTACT INFO -->
-        <div class="md:col-span-4 space-y-4 pt-2" id="contact">
-            <div class="space-y-2">
-                <h4 class="text-[#D21502] font-bold font-poppins text-base sm:text-lg">Contact Info</h4>
-                <div class="w-16 h-[1.5px] bg-gradient-to-r from-[#D21502] to-transparent rounded-full"></div>
-            </div>
-
-            <div class="space-y-3 text-sm sm:text-base font-medium pt-1">
-                <p class="flex items-start gap-3">
-                    <i class="fa-solid fa-location-dot text-[#D21502] text-lg mt-1 flex-shrink-0"></i>
-                    <span>GSG, Jl. Telekomunikasi No.1, Sukapura, Dayeuhkolot, Bandung Regency, West Java 40257</span>
-                </p>
-                <p class="flex items-center gap-3">
-                    <i class="fa-solid fa-envelope text-[#D21502] text-lg flex-shrink-0"></i>
-                    <span>mrec.telu@gmail.com</span>
-                </p>
-                <p class="flex items-center gap-3">
-                    <i class="fa-solid fa-globe text-[#D21502] text-lg flex-shrink-0"></i>
-                    <span>mrec.center.telkomuniversity.ac.id</span>
-                </p>
-            </div>
-        </div>
-
     </div>
-
-    <!-- HAK CIPTA -->
-    <div class="w-full px-10 sm:px-16 lg:px-24 pt-8 text-center text-xs sm:text-sm text-gray-500 font-medium">
-        <p>&copy; {{ date('Y') }} Metaverse Research and Experience Center | Telkom University. All rights reserved.</p>
-    </div>
+    <div class="mrec-footer-copyright"><p>© {{ date('Y') }} - Metaverse Research and Experience Center | Telkom University. All rights reserved.</p></div>
 </footer>

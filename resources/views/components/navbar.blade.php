@@ -7,7 +7,7 @@
         <div class="flex items-center gap-6 lg:gap-10">
             <!-- Logo MREC (Sesuai ukuran presisi W:76px H:34px) -->
             <a href="{{ route('home') }}" class="flex items-center flex-shrink-0">
-                <img src="{{ asset('storage/images/LogoMrecBig.png') }}" 
+                <img src="{{ asset('images/509d17f950.png') }}" 
                      alt="Logo MREC" 
                      class="w-[76px] h-[34px] object-contain">
             </a>

@@ -10,7 +10,7 @@
     <!-- Wrapper Foto LatarBelakang.png (Presisi persis W:1280px H:274px) -->
     <div class="relative w-full max-w-[1280px] h-[274px] mx-auto overflow-hidden flex items-center">
         <!-- Gambar Latar Belakang -->
-        <img src="{{ asset('storage/images/LatarBelakang.png') }}" 
+        <img src="{{ asset('images/LatarBelakang.png') }}"
              alt="Latar Belakang Hero" 
              class="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none z-0">
 
@@ -177,56 +177,5 @@
 <!-- ========================================= -->
 <!-- 3. CALL TO ACTION (CTA) SECTION -->
 <!-- ========================================= -->
-<section class="relative w-full bg-[#F8F9FA] overflow-hidden min-h-[450px]">
-
-    <div class="absolute -top-[105px] right-[60px] w-[290px] h-[290px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-10"></div>
-    <div class="absolute -bottom-[125px] -right-[55px] w-[270px] h-[270px] rounded-full border-[1.5px] border-[#D21502]/40 pointer-events-none z-20"></div>
-    <div class="absolute left-[4%] top-[42px] w-[20px] h-[20px] rotate-45 rounded-[2px] bg-[#D21502]/35 pointer-events-none z-10"></div>
-
-    <div class="absolute left-[11%] top-[45px] w-[32%] rotate-6 origin-left pointer-events-none z-10">
-        <div class="h-[1.5px] w-full bg-[#D21502]/35"></div>
-        <div class="h-[1.5px] w-[82%] mt-[14px] ml-[10%] bg-[#D21502]/35"></div>
-    </div>
-
-    <div class="relative z-30 w-full min-h-[450px] flex items-center">
-        <div class="w-full max-w-[1280px] mx-auto px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-8 py-16">
-            
-            <!-- Teks CTA -->
-            <div class="w-full lg:w-1/2 flex flex-col items-start z-30">
-                <h2 class="font-poppins font-semibold text-[36px] sm:text-[48px] leading-[1.1] tracking-tight mb-4 text-[#303B4F]">
-                    Have an Idea <br>
-                    <span class="text-[#D21502]">Worth Exploring?</span>
-                </h2>
-
-                <p class="font-hanken font-normal text-[16px] text-[#3F4A5A] leading-[1.65] max-w-[360px] mb-6">
-                    Let's research, experiment, and build the next experience together.
-                </p>
-
-                <a href="{{ route('contact.index') }}"
-                   class="px-6 h-[44px] inline-flex items-center justify-center gap-2 bg-[#D21502] hover:bg-[#b01101] text-white font-poppins font-semibold text-[14px] rounded-lg transition-all duration-200 shadow-sm shrink-0">
-                    <span>Let's Collaborate</span>
-                    <span class="text-[15px]">&rarr;</span>
-                </a>
-            </div>
-
-            <!-- Logo Big CTA -->
-            <div class="hidden lg:flex lg:w-1/2 justify-end z-20">
-                <img src="{{ asset('storage/images/LogoMrecBig.png') }}"
-                     alt="Logo MREC Big"
-                     class="w-[480px] h-auto object-contain">
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Hiasan Gelombang -->
-    <div class="absolute bottom-0 left-0 w-full h-[78px] sm:h-[88px] lg:h-[98px] pointer-events-none overflow-hidden z-40">
-        <img src="{{ asset('storage/images/Gelombang.png') }}"
-             alt="Gelombang"
-             class="w-full h-full object-fill">
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[3px] bg-[#D21502] z-50"></div>
-
-</section>
+{{-- CTA and wave are rendered once by components.footer in layouts.app. --}}
 @endsection
