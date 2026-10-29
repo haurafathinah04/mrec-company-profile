@@ -1,14 +1,158 @@
-/* Exact MREC page-wipe animation extracted from mrec-laravel-about(2).zip */
-#pageWipe{position:fixed;inset:0;z-index:9999;pointer-events:none;visibility:hidden}
-#pageWipe.on{visibility:visible}
-#pageWipe .panel{position:absolute;inset:-2% 0;background:linear-gradient(160deg,#f6f7f9,#e8eaef);transform:translateY(103%);transition:transform .55s cubic-bezier(.76,0,.24,1);box-shadow:0 -30px 80px rgba(15,23,42,.12)}
-#pageWipe .panel::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#d81f0f,#9aa0a6,#d81f0f)}
-#pageWipe.cover .panel{transform:translateY(0)}
-#pageWipe.leave .panel{transform:translateY(-103%)}
-#pageWipe .mark{position:absolute;top:50%;left:50%;width:min(480px,82vw);aspect-ratio:1350/608;transform:translate(-50%,-50%) scale(.72) rotate(-3deg);background:url("../images/509d17f950.png") center/contain no-repeat;opacity:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1) .18s,opacity .3s ease .18s;filter:drop-shadow(0 18px 28px rgba(43,52,69,.18))}
-#pageWipe.cover .mark{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg)}
-#pageWipe.leave .mark{opacity:0;transform:translate(-50%,-50%) scale(.76) rotate(3deg);transition-delay:0s}
-#pageWipe .ring{position:absolute;top:50%;left:50%;width:min(540px,90vw);aspect-ratio:2.2/1;transform:translate(-50%,-50%) scale(.78);border-radius:50%;border:2px solid rgba(216,31,15,.4);opacity:0;transition:transform .5s ease .22s,opacity .35s ease .22s}
-#pageWipe.cover .ring{opacity:1;transform:translate(-50%,-50%) scale(1)}
-#pageWipe.leave .ring{opacity:0;transition-delay:0s}
-@media(prefers-reduced-motion:reduce){.page.active{animation:none}}
+/* CONTAINER WIPER UTAMA */
+#pageWipe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    pointer-events: none;
+    visibility: hidden;
+    overflow: hidden;
+    will-change: visibility;
+}
+
+#pageWipe.on {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* 1. BACKGROUND PANEL (LIGHT FUTURISTIC CYBER) */
+#pageWipe .panel {
+    position: absolute;
+    top: -2%;
+    left: 0;
+    width: 100%;
+    height: 104%;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(210, 21, 2, 0.15) 0%, transparent 65%),
+        linear-gradient(135deg, #ffffff 0%, #f4f6f9 50%, #e2e7ef 100%);
+    transform: translate3d(0, 102%, 0);
+    transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: 0 -25px 80px rgba(0, 0, 0, 0.18);
+    will-change: transform;
+}
+
+/* POLA GRID SPATIAL COMPUTING */
+#pageWipe .panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+/* GARIS ATAS LINELIGHT */
+#pageWipe .panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: url("../storage/images/LineLight.png") repeat-x center/contain;
+    filter: drop-shadow(0 4px 8px rgba(210, 21, 2, 0.35));
+    z-index: 5;
+}
+
+#pageWipe.cover .panel {
+    transform: translate3d(0, 0%, 0);
+}
+
+#pageWipe.leave .panel {
+    transform: translate3d(0, -102%, 0);
+}
+
+/* 2. HUD RING ORBIT DENGAN BATIK MREC */
+#pageWipe .ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(530px, 88vw);
+    height: min(530px, 88vw);
+    transform: translate3d(-50%, -50%, 0) scale(0.6) rotate(0deg);
+    border-radius: 50%;
+    border: 2px dashed rgba(210, 21, 2, 0.4);
+    background: radial-gradient(circle, rgba(210, 21, 2, 0.06) 0%, transparent 70%);
+    box-shadow: 0 0 35px rgba(210, 21, 2, 0.15);
+    opacity: 0;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+    z-index: 1;
+    will-change: transform, opacity;
+}
+
+#pageWipe.cover .ring {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1) rotate(180deg);
+    animation: orbitRotate 14s linear infinite;
+}
+
+#pageWipe.leave .ring {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(1.2) rotate(360deg);
+}
+
+/* 3. LOGO MREC BIG + WATERMARK BATIK */
+#pageWipe .mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(450px, 84vw);
+    aspect-ratio: 1350/608;
+    transform: translate3d(-50%, -50%, 0) scale(0.8);
+    background: url("../storage/images/LogoMrecBig.png") center/contain no-repeat;
+    opacity: 0;
+    filter: drop-shadow(0 15px 32px rgba(210, 21, 2, 0.35));
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, opacity 0.5s ease 0.15s;
+    z-index: 3;
+    will-change: transform, opacity;
+}
+
+#pageWipe .mark::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 330px;
+    height: 330px;
+    transform: translate3d(-50%, -50%, 0) scale(0.8) rotate(-45deg);
+    background: url("../storage/images/Batik1Light.png") center/contain no-repeat;
+    opacity: 0.35;
+    z-index: -1;
+    pointer-events: none;
+    transition: transform 1s ease-out;
+}
+
+#pageWipe.cover .mark {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+    animation: logoFloat 2.8s ease-in-out infinite alternate;
+}
+
+#pageWipe.cover .mark::before {
+    transform: translate3d(-50%, -50%, 0) scale(1.1) rotate(0deg);
+}
+
+#pageWipe.leave .mark {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(1.15);
+}
+
+/* KEYFRAMES ANIMASI GPU ACCELERATED */
+@keyframes orbitRotate {
+    0% { transform: translate3d(-50%, -50%, 0) rotate(0deg); }
+    100% { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
+}
+
+@keyframes logoFloat {
+    0% {
+        transform: translate3d(-50%, -50%, 0) translateY(0px) scale(1);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) translateY(-10px) scale(1.03);
+    }
+}

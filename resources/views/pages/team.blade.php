@@ -41,8 +41,7 @@
         
         <!-- Subtitle Teks 2 Baris -->
         <p class="font-hanken font-normal text-[16px] sm:text-[18px] text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Meet the multidisciplinary team of visionaries, developers, and designers <br class="hidden sm:inline">
-            driving the future of spatial computing and the metaverse at MREC.
+            Meet the multidisciplinary team of visionaries, developers, and designers driving the future of spatial computing and the metaverse at MREC.
         </p>
 
         <!-- FITUR ADMIN -->
